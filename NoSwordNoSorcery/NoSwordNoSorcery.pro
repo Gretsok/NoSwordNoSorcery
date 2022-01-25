@@ -34,6 +34,8 @@ SOURCES += \
     characterview3d.cpp \
     collider2dcircle.cpp \
     collider2dsquare.cpp \
+    collider3dbox.cpp \
+    collider3dsphere.cpp \
     main.cpp \
     mainwindow.cpp \
     shootingabilitycontroller.cpp \
@@ -66,6 +68,8 @@ HEADERS += \
     characterview3d.h \
     collider2dcircle.h \
     collider2dsquare.h \
+    collider3dbox.h \
+    collider3dsphere.h \
     mainwindow.h \
     shootingabilitycontroller.h \
     shootingabilitymodel.h \
