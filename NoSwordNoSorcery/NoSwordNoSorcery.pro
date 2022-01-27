@@ -1,8 +1,9 @@
-QT       += core gui
+QT       += core gui opengl
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
+
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -37,6 +38,7 @@ SOURCES += \
     collider2dsquare.cpp \
     collider3dbox.cpp \
     collider3dsphere.cpp \
+    gldisplaywidget.cpp \
     main.cpp \
     mainwindow.cpp \
     shootingabilitycontroller.cpp \
@@ -45,6 +47,7 @@ SOURCES += \
 
 HEADERS += \
     dungeongenerator.h \
+    gldisplaywidget.h \
     mainwindow.h \
     abadblobview.h \
     abulletview.h \
@@ -79,6 +82,8 @@ HEADERS += \
 
 FORMS += \
     mainwindow.ui
+
+LIBS = -lglu32 -lOpengl32
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

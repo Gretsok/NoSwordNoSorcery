@@ -15,9 +15,10 @@ public:
 private:
     int dungeonLayout [5][5] = {{0}};
     Cell cells [5];
-    Cell FillRandomCell(void);
+    Cell FillRandomCell(int nodeNumber);
     void FillCornerCells(void);
     void CreatePathBetweenCells(Cell cell_1, Cell cell_2);
+    void Prim(void);
 };
 
 #endif // DUNGEONGENERATOR_H

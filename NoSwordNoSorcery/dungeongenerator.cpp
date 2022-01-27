@@ -11,12 +11,11 @@ using namespace std;
 
 DungeonGenerator::DungeonGenerator()
 {
-    Cell cell1,cell2,cell3;
     srand(time(0));
     FillCornerCells();
-    cells[2] = FillRandomCell();
-    cells[3]= FillRandomCell();
-    cells[4] = FillRandomCell();
+    cells[2] = FillRandomCell(3);
+    cells[3] = FillRandomCell(4);
+    cells[4] = FillRandomCell(5);
     CreatePathBetweenCells(cells[0],cells[1]);
     CreatePathBetweenCells(cells[0],cells[2]);
     CreatePathBetweenCells(cells[0],cells[3]);
@@ -37,9 +36,10 @@ DungeonGenerator::DungeonGenerator()
         }
         printf("\n");
     }
+
 }
 
-Cell DungeonGenerator::FillRandomCell(){
+Cell DungeonGenerator::FillRandomCell(int nodeNumber){
     Cell c;
     int x,y;
     x = rand()%5;
@@ -48,7 +48,7 @@ Cell DungeonGenerator::FillRandomCell(){
         x = rand()%5;
         y = rand()%5;
     }
-    dungeonLayout[x][y] = 1;
+    dungeonLayout[x][y] = nodeNumber;
     c.x = x;
     c.y = y;
     return c;
@@ -64,22 +64,22 @@ void DungeonGenerator::FillCornerCells(){
     }
     switch(corner1){
         case 0:
-            dungeonLayout[0][0] = 9;
+            dungeonLayout[0][0] = 1;
             c1.x = 0;
             c1.y = 0;
             break;
         case 1:
-            dungeonLayout[0][4] = 9;
+            dungeonLayout[0][4] = 1;
             c1.x = 0;
             c1.y = 4;
             break;
         case 2:
-            dungeonLayout[4][0] = 9;
+            dungeonLayout[4][0] = 1;
             c1.x = 4;
             c1.y = 0;
             break;
         case 3:
-            dungeonLayout[4][4] = 9;
+            dungeonLayout[4][4] = 1;
             c1.x = 4;
             c1.y = 4;
             break;
@@ -88,22 +88,22 @@ void DungeonGenerator::FillCornerCells(){
     }
     switch(corner2){
         case 0:
-            dungeonLayout[0][0] = 8;
+            dungeonLayout[0][0] = 2;
             c2.x = 0;
             c2.y = 0;
             break;
         case 1:
-            dungeonLayout[0][4] = 8;
+            dungeonLayout[0][4] = 2;
             c2.x = 0;
             c2.y = 4;
             break;
         case 2:
-            dungeonLayout[4][0] = 8;
+            dungeonLayout[4][0] = 2;
             c2.x = 4;
             c2.y = 0;
             break;
         case 3:
-            dungeonLayout[4][4] = 8;
+            dungeonLayout[4][4] = 2;
             c2.x = 4;
             c2.y = 4;
             break;
@@ -136,7 +136,7 @@ void DungeonGenerator::CreatePathBetweenCells(Cell cell_1, Cell cell_2){
         if(i!=endX){
             i++;
             if(dungeonLayout[i][j]==0)
-                dungeonLayout[i][j] = 2;
+                dungeonLayout[i][j] = 9;
         }
         if(j!=endY){
             if(j<endY)
@@ -144,7 +144,69 @@ void DungeonGenerator::CreatePathBetweenCells(Cell cell_1, Cell cell_2){
             else
                 j--;
             if(dungeonLayout[i][j]==0)
-                dungeonLayout[i][j] = 2;
+                dungeonLayout[i][j] = 9;
         }
     }
+}
+
+
+//NOT USED
+#define INF 9999999
+#define V 5
+void DungeonGenerator::Prim(void){
+        int no_edge;  // number of edge
+
+      // create a array to track selected vertex
+      // selected will become true otherwise false
+      int selected[V];
+
+      // set selected false initially
+      memset(selected, false, sizeof(selected));
+
+      // set number of edge to 0
+      no_edge = 0;
+
+      // the number of egde in minimum spanning tree will be
+      // always less than (V -1), where V is number of vertices in
+      //graph
+
+      // choose 0th vertex and make it true
+      selected[0] = true;
+
+      int x;  //  row number
+      int y;  //  col number
+
+      // print for edge and weight
+      cout << "Edge"
+         << " : "
+         << "Weight";
+      cout << endl;
+      while (no_edge < V-1) {
+        //For every vertex in the set S, find the all adjacent vertices
+        // , calculate the distance from the vertex selected at step 1.
+        // if the vertex is already in the set S, discard it otherwise
+        //choose another vertex nearest to selected vertex  at step 1.
+
+        int min = INF;
+        x = 0;
+        y = 0;
+
+        for (int i = 0; i < V; i++) {
+          if (selected[i]) {
+            for (int j = 0; j < V; j++) {
+              if (!selected[j] && dungeonLayout[i][j]) {  // not in selected and there is an edge
+                if (min > dungeonLayout[i][j]) {
+                  min = dungeonLayout[i][j];
+                  x = i;
+                  y = j;
+                }
+              }
+            }
+          }
+        }
+        cout << x << " - " << y << " :  " << dungeonLayout[x][y];
+        cout << endl;
+        selected[y] = true;
+        no_edge++;
+      }
 }
