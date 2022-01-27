@@ -1,6 +1,5 @@
 #include "charactercontroller.h"
 
-CharacterController::CharacterController()
-{
+CharacterController::CharacterController(){
 
 }

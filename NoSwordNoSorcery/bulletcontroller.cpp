@@ -1,6 +1,5 @@
 #include "bulletcontroller.h"
 
-BulletController::BulletController()
-{
+BulletController::BulletController(){
 
 }

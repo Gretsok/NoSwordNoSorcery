@@ -4,3 +4,7 @@ AView::AView()
 {
 
 }
+
+void AView::Render(void){
+
+}
