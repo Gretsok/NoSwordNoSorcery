@@ -39,6 +39,7 @@ SOURCES += \
     collider2dsquare.cpp \
     collider3dbox.cpp \
     collider3dsphere.cpp \
+    gamemanager.cpp \
     gldisplaywidget.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -49,6 +50,7 @@ SOURCES += \
 HEADERS += \
     collision.h \
     dungeongenerator.h \
+    gamemanager.h \
     gldisplaywidget.h \
     mainwindow.h \
     abadblobview.h \
