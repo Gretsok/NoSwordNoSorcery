@@ -12,6 +12,7 @@ CONFIG += c++11
 SOURCES += \
     adungeonview.cpp \
     dungeoncontroller.cpp \
+    collision.cpp \
     dungeongenerator.cpp \
     abadblobview.cpp \
     abulletview.cpp \
@@ -52,6 +53,7 @@ SOURCES += \
 HEADERS += \
     adungeonview.h \
     dungeoncontroller.h \
+    collision.h \
     dungeongenerator.h \
     dungeonmodel.h \
     dungeonview2d.h \
