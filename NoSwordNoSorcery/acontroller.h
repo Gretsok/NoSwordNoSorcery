@@ -7,7 +7,7 @@ class AController
 {
 public:
     AController();
-    AView View;
+    AView * View;
     AModel Model;
     void Render(void);
 };

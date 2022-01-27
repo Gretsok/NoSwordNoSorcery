@@ -14,7 +14,7 @@ public:
     //using AController<DungeonModel, ADungeonView>::AController;
     void OnViewSwitched(){
         //SWITCH A FAIRE
-        this->View = DungeonView2D();
+        this->View = new DungeonView2D();
     }
 };
 

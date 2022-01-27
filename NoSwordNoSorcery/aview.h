@@ -5,7 +5,7 @@ class AView
 {
 public:
     AView();
-    void Render(void);
+    virtual void Render(void) = 0;
 };
 
 #endif // AVIEW_H

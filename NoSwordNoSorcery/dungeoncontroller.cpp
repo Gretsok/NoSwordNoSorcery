@@ -1,5 +1,7 @@
 #include "dungeoncontroller.h"
+#include "iostream"
+
 
 DungeonController::DungeonController(){
-    this->View = DungeonView2D();
+    this->View = new DungeonView2D();
 }
