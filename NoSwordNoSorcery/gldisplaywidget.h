@@ -7,6 +7,10 @@
                      // and module widgets (QWidget, QGraphicsView).
 #include <QtWidgets>
 #include <QTimer>
+#include "dungeoncontroller.h"
+#include "dungeonview2d.h"
+#include "dungeonmodel.h"
+#include "adungeonview.h"
 
 class GLDisplayWidget : public QGLWidget
 {
@@ -31,6 +35,7 @@ private:
     float _X, _Y ,_Z; // Translation
 
     QPoint _lastPosMouse; // To keep the last position of the mouse
+    DungeonController dungeonController;
 };
 
 #endif // GLDISPLAYWIDGET_H

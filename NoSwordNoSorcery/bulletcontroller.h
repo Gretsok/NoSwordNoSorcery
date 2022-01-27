@@ -2,6 +2,8 @@
 #define BULLETCONTROLLER_H
 
 #include "acontroller.h"
+#include "abulletview.h"
+#include "bulletmodel.h"
 
 class BulletController : public AController
 {

@@ -2,6 +2,8 @@
 #define BADBLOBCONTROLLER_H
 
 #include "acontroller.h"
+#include "badblobmodel.h"
+#include "abadblobview.h"
 
 class BadBlobController : public AController
 {

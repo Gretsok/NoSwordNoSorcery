@@ -10,6 +10,8 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    adungeonview.cpp \
+    dungeoncontroller.cpp \
     collision.cpp \
     dungeongenerator.cpp \
     abadblobview.cpp \
@@ -40,6 +42,8 @@ SOURCES += \
     collider3dbox.cpp \
     collider3dsphere.cpp \
     gamemanager.cpp \
+    dungeonmodel.cpp \
+    dungeonview2d.cpp \
     gldisplaywidget.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -48,9 +52,13 @@ SOURCES += \
     shootingabilityview.cpp
 
 HEADERS += \
+    adungeonview.h \
+    dungeoncontroller.h \
     collision.h \
     dungeongenerator.h \
     gamemanager.h \
+    dungeonmodel.h \
+    dungeonview2d.h \
     gldisplaywidget.h \
     mainwindow.h \
     abadblobview.h \

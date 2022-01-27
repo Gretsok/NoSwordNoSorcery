@@ -2,6 +2,8 @@
 #define CHARACTERCONTROLLER_H
 
 #include "acontroller.h"
+#include "charactermodel.h"
+#include "acharacterview.h"
 
 class CharacterController : public AController
 {

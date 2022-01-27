@@ -18,7 +18,7 @@ GLDisplayWidget::GLDisplayWidget(QWidget *parent) : QGLWidget(parent), _X(0), _Y
 void GLDisplayWidget::initializeGL()
 {
     // background color
-    glClearColor(0.07, 0.04, 0.02, 1);
+    glClearColor((5.f/255.f),(55.f/255.f),(66.f/255.f), 1);
 
     // Shader
     glEnable(GL_DEPTH_TEST);
@@ -38,28 +38,7 @@ void GLDisplayWidget::paintGL(){
 
     glTranslatef(0.0, 0.0, _Z);
 
-    // Rotation
-    //glRotatef(0.f, 90.0f, 0.0, 0.0f);
-
-    glBegin(GL_TRIANGLES);
-        glColor3f(1, 0 ,0);
-        glVertex3f(-0.5,0.8,0);
-        glVertex3f(0,1.6,0);
-        glVertex3f(0.5,0.8,0);
-
-        glColor3f(0, 0 ,1);
-        glVertex3f(0,0,0);
-        glVertex3f(0.5,0.8,0);
-        glVertex3f(1,0,0);
-    glEnd();
-
-    glBegin(GL_LINE_STRIP);
-        glColor3f(0, 1 ,0);
-        glVertex3f(-1,0,0);
-        glVertex3f(-0.5,0.8f,0);
-        glVertex3f(0,0,0);
-        glVertex3f(-1,0,0);
-    glEnd();
+    dungeonController.Render();
 }
 
 void GLDisplayWidget::resizeGL(int width, int height){
