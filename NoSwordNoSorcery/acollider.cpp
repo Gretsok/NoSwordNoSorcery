@@ -42,6 +42,13 @@ ACollider::ACollider()
 
 }
 
+ACollider::ACollider(QVector3D a_center)
+{
+    ACollider::RegisteredColliders.push_front(this);
+    this->m_origin = a_center;
+
+}
+
 ACollider::~ACollider()
 {
     ACollider::RegisteredColliders.remove(this);
@@ -55,13 +62,28 @@ void ACollider::OnMove(QVector3D a_newOrigin)
 
 bool ACollider::IsCollidingWithMe(QVector3D a_intersectorOrigin, QVector3D a_intersectorVector)
 {
-    return false;
+   return false;
 }
 void ACollider::check_collisions()
 {
-    for(int i = 0; i < (int) ACollider::RegisteredColliders.size() ; ++i)
+    std::list<QVector3D>::iterator vIt;
+    std::list<QVector3D> intersectors= this->get_intersectors();
+
+    for(vIt = intersectors.begin(); vIt != intersectors.end(); ++vIt)
     {
-        // Iterate list to call IsCollidingWithMe OnEach
+        std::list<ACollider*>::iterator it;
+
+        for(it = ACollider::RegisteredColliders.begin(); it != ACollider::RegisteredColliders.end(); ++it)
+        {
+            (*it)->ACollider::IsCollidingWithMe(this->m_origin, *vIt);
+        }
     }
+
+
+}
+
+std::list<QVector3D> ACollider::get_intersectors()
+{
+    return { QVector3D(0, 0, 0) };
 }
 
