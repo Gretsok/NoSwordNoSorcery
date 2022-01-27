@@ -8,17 +8,18 @@ GameManager::GameManager()
 
 void GameManager::Update()
 {
-    UpdateGameStates();
-    Render();
+    update_game_states();
+    render();
 }
 
 
-void GameManager::UpdateGameStates()
+void GameManager::update_game_states()
 {
 
 }
 
-void GameManager::Render()
+void GameManager::render()
 {
-
+    this->m_dungeonController->Render();
+    this->CharacterController->Render();
 }
