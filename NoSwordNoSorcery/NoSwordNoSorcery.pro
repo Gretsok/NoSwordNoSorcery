@@ -45,7 +45,7 @@ SOURCES += \
 
 HEADERS += \
     dungeongenerator.h \
-    mainwindow.h
+    mainwindow.h \
     abadblobview.h \
     abulletview.h \
     acharacterview.h \
@@ -73,7 +73,6 @@ HEADERS += \
     collider2dsquare.h \
     collider3dbox.h \
     collider3dsphere.h \
-    mainwindow.h \
     shootingabilitycontroller.h \
     shootingabilitymodel.h \
     shootingabilityview.h
