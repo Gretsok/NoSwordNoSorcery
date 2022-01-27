@@ -10,9 +10,17 @@ Collider2DCircle::Collider2DCircle(QVector3D a_center, float a_radius) : ACollid
     this->m_radius = a_radius;
 }
 
-bool Collider2DCircle::IsCollidingWithMe(QVector3D a_intersectorOrigin, QVector3D a_intersectorVector)
+Collision* Collider2DCircle::IsCollidingWithMe(QVector3D a_intersectorOrigin, QVector3D a_intersectorVector)
 {
-    return ACollider::AreIntersected(a_intersectorOrigin, a_intersectorVector, this->m_origin, this->m_radius);
+    if(ACollider::AreIntersected(a_intersectorOrigin, a_intersectorVector, this->m_origin, this->m_radius))
+    {
+        Collision collision = Collision(ACollider::GetVectorFromTwoPoints(this->m_origin, a_intersectorOrigin + a_intersectorVector));
+        return &collision;
+    }
+    else
+    {
+        return NULL;
+    }
 }
 
 std::list<QVector3D> Collider2DCircle::get_intersectors()

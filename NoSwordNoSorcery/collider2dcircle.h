@@ -8,7 +8,7 @@ class Collider2DCircle : public ACollider
 public:
     Collider2DCircle();
     Collider2DCircle(QVector3D a_center, float a_radius);
-    bool IsCollidingWithMe(QVector3D a_intersectorOrigin, QVector3D a_intersectorVector);
+    Collision* IsCollidingWithMe(QVector3D a_intersectorOrigin, QVector3D a_intersectorVector);
 
 protected:
     float m_radius;

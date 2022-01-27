@@ -60,10 +60,11 @@ void ACollider::OnMove(QVector3D a_newOrigin)
     this->ACollider::check_collisions();
 }
 
-bool ACollider::IsCollidingWithMe(QVector3D a_intersectorOrigin, QVector3D a_intersectorVector)
+Collision* ACollider::IsCollidingWithMe(QVector3D a_intersectorOrigin, QVector3D a_intersectorVector)
 {
-   return false;
+   return NULL;
 }
+
 void ACollider::check_collisions()
 {
     std::list<QVector3D>::iterator vIt;
@@ -75,15 +76,15 @@ void ACollider::check_collisions()
 
         for(it = ACollider::RegisteredColliders.begin(); it != ACollider::RegisteredColliders.end(); ++it)
         {
-            (*it)->ACollider::IsCollidingWithMe(this->m_origin, *vIt);
+            Collision collision = *((*it)->ACollider::IsCollidingWithMe(this->m_origin, *vIt));
+            this->OnCollision(collision);
         }
     }
-
-
 }
 
 std::list<QVector3D> ACollider::get_intersectors()
 {
     return { QVector3D(0, 0, 0) };
 }
+
 
