@@ -7,6 +7,7 @@ class ACharacterView : public ACombatManagerView
 {
 public:
     ACharacterView();
+    void Render(void);
 };
 
 #endif // ACHARACTERVIEW_H

@@ -12,10 +12,7 @@ class DungeonController : public AController
 public:
     DungeonController();
     //using AController<DungeonModel, ADungeonView>::AController;
-    void OnViewSwitched(){
-        //SWITCH A FAIRE
-        this->View = new DungeonView2D();
-    }
+    void OnViewSwitched();
 };
 
 #endif // DUNGEONCONTROLLER_H

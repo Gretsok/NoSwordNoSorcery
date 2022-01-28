@@ -10,6 +10,7 @@ public:
     AView * View;
     AModel Model;
     void Render(void);
+    bool Viewis3D;
 };
 
 #endif // ACONTROLLER_H

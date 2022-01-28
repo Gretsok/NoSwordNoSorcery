@@ -4,3 +4,7 @@ ACharacterView::ACharacterView()
 {
 
 }
+
+void ACharacterView::Render(){
+
+}

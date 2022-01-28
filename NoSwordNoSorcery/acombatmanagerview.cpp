@@ -4,3 +4,7 @@ ACombatManagerView::ACombatManagerView()
 {
 
 }
+
+void ACombatManagerView::Render(){
+
+}

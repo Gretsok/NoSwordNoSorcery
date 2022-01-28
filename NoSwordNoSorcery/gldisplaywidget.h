@@ -8,9 +8,7 @@
 #include <QtWidgets>
 #include <QTimer>
 #include "dungeoncontroller.h"
-#include "dungeonview2d.h"
-#include "dungeonmodel.h"
-#include "adungeonview.h"
+#include "charactercontroller.h"
 
 class GLDisplayWidget : public QGLWidget
 {
@@ -36,6 +34,7 @@ private:
 
     QPoint _lastPosMouse; // To keep the last position of the mouse
     DungeonController dungeonController;
+    CharacterController characterController;
 };
 
 #endif // GLDISPLAYWIDGET_H
