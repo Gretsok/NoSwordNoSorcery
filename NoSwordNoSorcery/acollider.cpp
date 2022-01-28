@@ -1,4 +1,6 @@
 #include "acollider.h"
+#include "collidercontroller.h"
+#include "QDebug"
 
 bool ACollider::AreIntersected(QVector3D a_intersectorOrigin, QVector3D a_intersectorVector, QVector3D a_intersectedOrigin, QVector3D a_intersectedVector)
 {
@@ -33,25 +35,21 @@ QVector3D ACollider::GetVectorFromTwoPoints(QVector3D a_origin, QVector3D a_dest
                      a_destionation.z() - a_origin.z());
 }
 
-std::list<ACollider*> ACollider::RegisteredColliders = std::list<ACollider*>();
 
 ACollider::ACollider()
 {
-    ACollider::RegisteredColliders.push_front(this);
     this->m_origin = QVector3D(0, 0, 0);
 
 }
 
 ACollider::ACollider(QVector3D a_center)
 {
-    ACollider::RegisteredColliders.push_front(this);
     this->m_origin = a_center;
 
 }
 
 ACollider::~ACollider()
 {
-    ACollider::RegisteredColliders.remove(this);
 }
 
 void ACollider::OnMove(QVector3D a_deltaToNewOrigin)
@@ -60,9 +58,9 @@ void ACollider::OnMove(QVector3D a_deltaToNewOrigin)
     this->ACollider::check_collisions();
 }
 
-Collision* ACollider::IsCollidingWithMe(QVector3D a_intersectorOrigin, QVector3D a_intersectorVector)
+Collision ACollider::IsCollidingWithMe(QVector3D a_intersectorOrigin, QVector3D a_intersectorVector)
 {
-   return NULL;
+   return Collision();
 }
 
 QVector3D ACollider::GetOrigin()
@@ -70,33 +68,45 @@ QVector3D ACollider::GetOrigin()
     return this->m_origin;
 }
 
+std::list<OrientedLine> ACollider::Debug_GetLines()
+{
+    return this->get_intersectors();
+}
+
 void ACollider::check_collisions()
 {
-    std::list<QVector3D>::iterator vIt;
-    std::list<QVector3D> intersectors= this->get_intersectors();
+    std::list<OrientedLine>::iterator vIt;
+    std::list<OrientedLine> intersectors= this->get_intersectors();
 
     for(vIt = intersectors.begin(); vIt != intersectors.end(); ++vIt)
     {
-        std::list<ACollider*>::iterator it;
+        std::list<ColliderController*>::iterator it;
 
-        for(it = ACollider::RegisteredColliders.begin(); it != ACollider::RegisteredColliders.end(); ++it)
+        for(it = ColliderController::GetColliderControllers().begin(); it != ColliderController::GetColliderControllers().end(); ++it)
         {
-            if((*it) != this)
+            if((*it)->Model != this)
             {
-                Collision* collision = (*it)->ACollider::IsCollidingWithMe(this->m_origin, *vIt);
-                if(collision != NULL)
+                Collision collision = ((ACollider*)((*it)->Model))->IsCollidingWithMe((*vIt).GetOrigin(),
+                                                                                   ACollider::GetVectorFromTwoPoints((*vIt).GetOrigin(), (*vIt).GetDestination()));
+
+                if(collision.HasCollision)
                 {
-                    this->OnCollision(*collision);
+                    if(this->OnCollision != NULL)
+                    {
+                        (this->*OnCollision)(collision);
+                    }
+
                 }
+                //qDebug() << collision;
 
             }
         }
     }
 }
 
-std::list<QVector3D> ACollider::get_intersectors()
+std::list<OrientedLine> ACollider::get_intersectors()
 {
-    return { QVector3D(0, 0, 0) };
+    return { OrientedLine() };
 }
 
 

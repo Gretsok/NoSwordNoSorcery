@@ -11,6 +11,8 @@ CONFIG += c++11
 
 SOURCES += \
     adungeonview.cpp \
+    collidercontroller.cpp \
+    colliderview.cpp \
     dungeoncontroller.cpp \
     collision.cpp \
     dungeongenerator.cpp \
@@ -46,6 +48,7 @@ SOURCES += \
     dungeonmodel.cpp \
     dungeonview2d.cpp \
     gldisplaywidget.cpp \
+    line.cpp \
     main.cpp \
     mainwindow.cpp \
     shootingabilitycontroller.cpp \
@@ -54,6 +57,8 @@ SOURCES += \
 
 HEADERS += \
     adungeonview.h \
+    collidercontroller.h \
+    colliderview.h \
     dungeoncontroller.h \
     collision.h \
     dungeongenerator.h \
@@ -62,6 +67,7 @@ HEADERS += \
     dungeonmodel.h \
     dungeonview2d.h \
     gldisplaywidget.h \
+    line.h \
     mainwindow.h \
     abadblobview.h \
     abulletview.h \

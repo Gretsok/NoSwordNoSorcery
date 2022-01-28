@@ -11,7 +11,7 @@ public:
     AController();
 
     virtual void UpdateGameStates(void);
-    void Render(void);
+    virtual void Render(void);
     bool Viewis3D;
     virtual void OnViewSwitched() = 0;
 };

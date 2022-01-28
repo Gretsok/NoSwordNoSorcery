@@ -6,6 +6,7 @@ class AModel
 {
 public:
     AModel();
+    ~AModel();
     virtual void UpdateGameStates(void);
 };
 

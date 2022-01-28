@@ -12,6 +12,7 @@ public:
     void Update();
     static double GetDeltaTime();
 private:
+    bool m_displayColliders;
     static double s_deltaTime;
     double m_timeOfLastFrame;
     DungeonGenerator* m_dungeonGenerator;

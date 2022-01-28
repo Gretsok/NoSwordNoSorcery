@@ -6,8 +6,10 @@
 class Collision
 {
 public:
+    Collision();
     Collision(QVector3D a_normal);
     QVector3D GetNormal();
+    bool HasCollision = false;
 private:
     QVector3D m_normal;
 };

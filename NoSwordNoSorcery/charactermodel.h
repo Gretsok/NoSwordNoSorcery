@@ -10,6 +10,7 @@ class CharacterModel : public APhysicalObjectModel
 {
 public:
     CharacterModel();
+    virtual ~CharacterModel();
     void SetMovementInput(QVector2D a_inputs);
 protected:
     float m_accelerationSpeed;

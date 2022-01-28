@@ -1,8 +1,9 @@
 #include "dungeonview2d.h"
+#include <QDebug>
 
 DungeonView2D::DungeonView2D()
 {
-
+    qDebug() << "constructor DungeonView2D";
 }
 
 void DungeonView2D::DrawTopDoor(void){

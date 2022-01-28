@@ -1,4 +1,5 @@
 #include "collider2dsquare.h"
+#include <QDebug>
 
 Collider2DSquare::Collider2DSquare() : ACollider {}
 {
@@ -10,35 +11,43 @@ Collider2DSquare::Collider2DSquare(QVector3D a_center, QVector3D a_cornerLocalPo
     this->m_cornerLocalPoint = a_cornerLocalPoint;
 }
 
-Collision* Collider2DSquare::IsCollidingWithMe(QVector3D a_intersectorOrigin, QVector3D a_intersectorVector)
+Collision Collider2DSquare::IsCollidingWithMe(QVector3D a_intersectorOrigin, QVector3D a_intersectorVector)
 {
-    std::list<QVector3D> borders = this-> get_borders();
-    std::list<QVector3D>::iterator it;
+    std::list<OrientedLine> borders = this-> get_borders();
+    std::list<OrientedLine>::iterator it;
     for(it = borders.begin(); it != borders.end(); ++it)
     {
-        if(ACollider::AreIntersected(a_intersectorOrigin, a_intersectorVector, this->m_origin, (*it)))
+        if(ACollider::AreIntersected(a_intersectorOrigin, a_intersectorVector, (*it).GetOrigin(), ACollider::GetVectorFromTwoPoints((*it).GetOrigin(), (*it).GetDestination())))
         {
             Collision collision = Collision(QVector3D::crossProduct(QVector3D(0,0,1), a_intersectorVector));
-            return &collision;
+            collision.HasCollision = true;
+            return collision;
         }
     }
-    return NULL;
+    return Collision();
 }
 
-std::list<QVector3D> Collider2DSquare::get_intersectors()
+std::list<OrientedLine> Collider2DSquare::get_intersectors()
 {
     return this->get_borders();
 }
 
-std::list<QVector3D> Collider2DSquare::get_borders()
+std::list<OrientedLine> Collider2DSquare::get_borders()
 {
-    QVector3D corners [4] = { this->m_origin + this->m_cornerLocalPoint,
-                this->m_origin + this->m_cornerLocalPoint + QVector3D::crossProduct(ACollider::GetVectorFromTwoPoints(this->m_cornerLocalPoint, this->m_origin), QVector3D(0, 0, 1)),
-                this->m_origin + this->m_cornerLocalPoint + ACollider::GetVectorFromTwoPoints(this->m_cornerLocalPoint, this->m_origin) * 2,
-                this->m_origin + this->m_cornerLocalPoint - QVector3D::crossProduct(ACollider::GetVectorFromTwoPoints(this->m_cornerLocalPoint, this->m_origin), QVector3D(0, 0, 1))};
-    return {ACollider::GetVectorFromTwoPoints(corners[0], corners[1]),
-                ACollider::GetVectorFromTwoPoints(corners[1], corners[2]),
-                ACollider::GetVectorFromTwoPoints(corners[2], corners[3]),
-                ACollider::GetVectorFromTwoPoints(corners[3], corners[0]),
+    QVector3D corners [4] = {
+                this->m_origin + this->m_cornerLocalPoint,
+                this->m_origin + QVector3D::crossProduct(-this->m_cornerLocalPoint, QVector3D(0, 0, 1)),
+                this->m_origin - this->m_cornerLocalPoint,
+                this->m_origin - QVector3D::crossProduct(-this->m_cornerLocalPoint, QVector3D(0, 0, 1))
+    };
+
+    //qDebug() << "Origin: " << this->m_origin << " | corner 1 : " << corners[0] << " | corner 2 : " << corners[1] << " | corner 3 : " << corners[2] << " | corner 4 : " << corners[3];
+
+    return {
+                OrientedLine(corners[0], corners[1]),
+                OrientedLine(corners[1], corners[2]),
+                OrientedLine(corners[2], corners[3]),
+                OrientedLine(corners[3],corners[0])
     };
 }
+

@@ -1,5 +1,6 @@
 #include "badblobcontroller.h"
 
-BadBlobController::BadBlobController(){
+BadBlobController::BadBlobController()
+{
 
 }
