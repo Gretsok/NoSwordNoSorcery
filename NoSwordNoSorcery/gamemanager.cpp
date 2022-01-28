@@ -19,13 +19,14 @@ void GameManager::Update()
     GameManager::s_deltaTime = double(timeOfNow - this->m_timeOfLastFrame)/CLOCKS_PER_SEC;
     this->m_timeOfLastFrame = timeOfNow;
 
-    qDebug() << " delta Time : " << GameManager::GetDeltaTime();
+    //qDebug() << " delta Time : " << GameManager::GetDeltaTime();
 }
 
 
 void GameManager::update_game_states()
 {
-
+    this->m_characterController->UpdateGameStates();
+    this->m_dungeonController->UpdateGameStates();
 }
 
 
@@ -33,7 +34,6 @@ void GameManager::render()
 {
     this->m_characterController->Render();
     this->m_dungeonController->Render();
-    this->m_characterController->Render();
 }
 
 double GameManager::GetDeltaTime()

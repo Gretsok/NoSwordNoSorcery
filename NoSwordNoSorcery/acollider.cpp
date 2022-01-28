@@ -54,15 +54,20 @@ ACollider::~ACollider()
     ACollider::RegisteredColliders.remove(this);
 }
 
-void ACollider::OnMove(QVector3D a_newOrigin)
+void ACollider::OnMove(QVector3D a_deltaToNewOrigin)
 {
-    this->m_origin += a_newOrigin;
+    this->m_origin += a_deltaToNewOrigin;
     this->ACollider::check_collisions();
 }
 
 Collision* ACollider::IsCollidingWithMe(QVector3D a_intersectorOrigin, QVector3D a_intersectorVector)
 {
    return NULL;
+}
+
+QVector3D ACollider::GetOrigin()
+{
+    return this->m_origin;
 }
 
 void ACollider::check_collisions()

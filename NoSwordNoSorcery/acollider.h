@@ -19,6 +19,7 @@ public:
     void OnMove(QVector3D a_newOrigin);
     Collision* IsCollidingWithMe(QVector3D a_intersectorOrigin, QVector3D a_intersectorVector);
     CollisionDelegate OnCollision;
+    QVector3D GetOrigin();
 
 private:
     void check_collisions();

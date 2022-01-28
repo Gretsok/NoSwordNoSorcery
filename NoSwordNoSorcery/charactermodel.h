@@ -4,12 +4,14 @@
 #include "acombatmanagermodel.h"
 #include "aphysicalobjectmodel.h"
 #include "collider2dsquare.h"
+#include <QVector2D>
 
-class CharacterModel : public ACombatManagerModel, public APhysicalObjectModel
+class CharacterModel : public APhysicalObjectModel
 {
 public:
     CharacterModel();
-    void SetMovementInput();
+    void SetMovementInput(QVector2D a_inputs);
+
 };
 
 #endif // CHARACTERMODEL_H

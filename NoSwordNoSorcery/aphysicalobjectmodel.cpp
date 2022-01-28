@@ -1,21 +1,43 @@
 #include "aphysicalobjectmodel.h"
 #include "collider2dsquare.h"
-
+#include "gamemanager.h"
+#include<QDebug>
 
 APhysicalObjectModel::APhysicalObjectModel()
 {
-    this->m_2DCollider = Collider2DSquare();
+    this->m_2DCollider = new Collider2DSquare();
     this->m_currentMovement = QVector3D();
     this->m_deceleration = 3.f;
-    this->m_deceleration = 5.f;
+    this->m_maxSpeed = 5.f;
+    this->m_speed = 0.f;
+    //this->m_2DCollider.OnCollision = HandlingCollision;
+}
+
+APhysicalObjectModel::~APhysicalObjectModel()
+{
+    delete this->m_2DCollider;
 }
 
 void APhysicalObjectModel::ApplyAcceleration(QVector3D a_accelerationToAdd)
 {
-
+    m_currentMovement *= m_speed;
+    m_currentMovement += a_accelerationToAdd * GameManager::GetDeltaTime();
+    m_speed = m_currentMovement.length();
+    m_currentMovement.normalize();
 }
 
 void APhysicalObjectModel::HandlingCollision(Collision collision)
 {
 
+}
+
+void APhysicalObjectModel::UpdateGameStates(void)
+{
+    this->m_2DCollider->OnMove(m_currentMovement * this->m_speed * GameManager::GetDeltaTime());
+    this->m_speed -= this->m_deceleration * GameManager::GetDeltaTime();
+}
+
+QVector3D APhysicalObjectModel::GetPositions()
+{
+    return this->m_2DCollider->GetOrigin();
 }

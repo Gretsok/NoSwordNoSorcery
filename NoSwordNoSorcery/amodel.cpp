@@ -4,3 +4,8 @@ AModel::AModel()
 {
 
 }
+
+void AModel::UpdateGameStates(void)
+{
+
+}

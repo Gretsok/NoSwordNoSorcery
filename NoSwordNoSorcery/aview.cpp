@@ -4,3 +4,9 @@ AView::AView()
 {
 
 }
+
+void AView::Update()
+{
+
+}
+

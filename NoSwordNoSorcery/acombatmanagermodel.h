@@ -3,7 +3,7 @@
 
 #include "amodel.h"
 
-class ACombatManagerModel : public AModel
+class ACombatManagerModel : virtual public AModel
 {
 public:
     ACombatManagerModel();

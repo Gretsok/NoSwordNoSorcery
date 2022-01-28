@@ -6,11 +6,14 @@
 class AController
 {
 public:
-    AController();
     AView * View;
-    AModel Model;
+    AModel* Model;
+    AController();
+
+    virtual void UpdateGameStates(void);
     void Render(void);
     bool Viewis3D;
+    virtual void OnViewSwitched() = 0;
 };
 
 #endif // ACONTROLLER_H

@@ -4,6 +4,7 @@
 
 DungeonController::DungeonController(){
     this->View = new DungeonView2D();
+    this->Model = new DungeonModel();
 }
 
 void DungeonController::OnViewSwitched(){
