@@ -3,6 +3,7 @@
 
 #include "amodel.h"
 #include "collidercontroller.h"
+#include "dungeongenerator.h"
 
 class DungeonModel : public AModel
 {
@@ -15,6 +16,17 @@ protected:
     ColliderController* m_botCollider;
     ColliderController* m_leftCollider;
     void SwitchView(bool a_to3D);
+    DungeonGenerator dungeonGenerator;
+    int xRoomIndex = dungeonGenerator.startRoomX;
+    int yRoomIndex = dungeonGenerator.startRoomY;
+    bool TopDoor(void);
+    bool BottomDoor(void);
+    bool LeftDoor(void);
+    bool RightDoor(void);
+    void MoveRightRoom(void);
+    void MoveLeftRoom(void);
+    void MoveTopRoom(void);
+    void MoveBottomRoom(void);
 private:
     void switch_to_2D();
     void switch_to_3D();

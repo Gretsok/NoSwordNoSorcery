@@ -6,10 +6,7 @@
 
 int main(int argc, char *argv[])
 {
-    DungeonGenerator dungeonGenerator;
-
     QApplication a(argc, argv);
-    DungeonView2D dungeonView;
 
     MainWindow w;
 

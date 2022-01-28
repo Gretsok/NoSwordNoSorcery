@@ -13,6 +13,7 @@ class DungeonController : public AController
 public:
     DungeonController();
     void OnViewSwitched();
+    void Render(void);
 };
 
 #endif // DUNGEONCONTROLLER_H

@@ -47,11 +47,6 @@ void DungeonView2D::DrawBottomDoor(void){
 }
 
 void DungeonView2D::Render(void){
-    DrawTopDoor();
-    DrawRightDoor();
-    DrawLeftDoor();
-    DrawBottomDoor();
-
 
     //MURS
     glBegin(GL_LINE_STRIP);

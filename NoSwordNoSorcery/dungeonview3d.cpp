@@ -30,10 +30,10 @@ void sommetH(float layer=0){
     glVertex3f(4,0,layer);
 }
 void sommetI(float layer=0){
-    glVertex3f(-(5.f/8.f)*4,(((1.f/3.f)*4)*(3.f/8.f)),layer);
+    glVertex3f(-(5.f/8.f)*4,-(1.f/3.f),layer);
 }
 void sommetJ(float layer=0){
-    glVertex3f(-(3.f/8.f)*4,(((1.f/3.f)*4)*(5.f/8.f)),layer);
+    glVertex3f(-(3.f/8.f)*4,0,layer);
 }
 void sommetK(float layer=0){
     glVertex3f(-(3.f/8.f)*4,((((2.f/3.f)*4))-4)*(11.f/8.f),layer);
@@ -42,10 +42,10 @@ void sommetL(float layer=0){
     glVertex3f(-(5.f/8.f)*4,((((2.f/3.f)*4)-4)*(13.f/8.f)),layer);
 }
 void sommetM(float layer=0){
-    glVertex3f((3.f/8.f)*4,(((1.f/3.f)*4)*(5.f/8.f)),layer);
+    glVertex3f((3.f/8.f)*4,0,layer);
 }
 void sommetN(float layer=0){
-    glVertex3f((5.f/8.f)*4,(((1.f/3.f)*4)*(3.f/8.f)),layer);
+    glVertex3f((5.f/8.f)*4,-(1.f/3.f),layer);
 }
 void sommetO(float layer=0){
     glVertex3f((5.f/8.f)*4,((((2.f/3.f)*4)-4)*(13.f/8.f)),layer);
@@ -53,11 +53,19 @@ void sommetO(float layer=0){
 void sommetP(float layer=0){
     glVertex3f((3.f/8.f)*4,((((2.f/3.f)*4))-4)*(11.f/8.f),layer);
 }
+/*
+ * ANCIEN PLUS GRANDE PORTE
 void sommetQ(float layer=0){
     glVertex3f((3.f/8.f)*4,(((2.f/3.f)*4)-4)+(3.f/8.f)*(-(((2.f/3.f)*4)-4)),layer);
 }
 void sommetR(float layer=0){
     glVertex3f((5.f/8.f)*4,(((2.f/3.f)*4)-4)+(5.f/8.f)*(-(((2.f/3.f)*4)-4)),layer);
+}*/
+void sommetQ(float layer=0){
+    glVertex3f((3.f/8.f)*4,-(5.f/3.f),layer);
+}
+void sommetR(float layer=0){
+    glVertex3f((5.f/8.f)*4,-(4.f/3.f),layer);
 }
 void sommetS(float layer=0){
     glVertex3f((5.f/8.f)*4,-4 + (5.f/8.f)*(1.f/3.f)*4,layer);
@@ -66,10 +74,10 @@ void sommetT(float layer=0){
     glVertex3f((3.f/8.f)*4,-4 + (3.f/8.f)*(1.f/3.f)*4,layer);
 }
 void sommetU(float layer=0){
-    glVertex3f(-(5.f/8.f)*4,(((2.f/3.f)*4)-4)+(5.f/8.f)*(-(((2.f/3.f)*4)-4)),layer);
+    glVertex3f(-(5.f/8.f)*4,-(4.f/3.f),layer);
 }
 void sommetV(float layer=0){
-    glVertex3f(-(3.f/8.f)*4,(((2.f/3.f)*4)-4)+(3.f/8.f)*(-(((2.f/3.f)*4)-4)),layer);
+    glVertex3f(-(3.f/8.f)*4,-(5.f/3.f),layer);
 }
 void sommetW(float layer=0){
     glVertex3f(-(3.f/8.f)*4,-4 + (3.f/8.f)*(1.f/3.f)*4,layer);
@@ -100,8 +108,6 @@ void DungeonView3D::Render(){
         sommetH(0.001);
         sommetD(0.001);
     glEnd();
-
-    DrawRightDoor();
 
 
     //DESSUS DES MURS
@@ -208,7 +214,7 @@ void DungeonView3D::Render(){
 
 
     //MURS TRANSPARENTS
-    glBegin(GL_QUADS);
+    /*glBegin(GL_QUADS);
     //rgb(57,162,219)
         glColor4f((57.f/255.f),(162.f/255.f),(219.f/255.f),0.1f);
         sommetA(0.001);
@@ -224,30 +230,20 @@ void DungeonView3D::Render(){
         sommetE(0.001);
         sommetH(0.001);
         sommetD(0.001);
-    glEnd();
+    glEnd();*/
 }
 
 void DungeonView3D::DrawTopDoor(){
     glBegin(GL_QUADS);
         glColor3f(0.f,0.f,0.f);
-        sommetI();
-        sommetJ();
-        sommetK();
-        sommetL();
+        sommetM();
+        sommetN();
+        sommetO();
+        sommetP();
     glEnd();
 }
 
 void DungeonView3D::DrawBottomDoor(){
-    glBegin(GL_QUADS);
-        glColor4f(0.f,0.f,0.f,0.1f);
-        sommetQ(0.001);
-        sommetR(0.001);
-        sommetS(0.001);
-        sommetT(0.001);
-    glEnd();
-}
-
-void DungeonView3D::DrawLeftDoor(){
     glBegin(GL_QUADS);
         glColor4f(0.f,0.f,0.f,0.1f);
         sommetU(0.001);
@@ -257,12 +253,22 @@ void DungeonView3D::DrawLeftDoor(){
     glEnd();
 }
 
-void DungeonView3D::DrawRightDoor(){
+void DungeonView3D::DrawLeftDoor(){
     glBegin(GL_QUADS);
         glColor3f(0.f,0.f,0.f);
-        sommetM();
-        sommetN();
-        sommetO();
-        sommetP();
+        sommetI();
+        sommetJ();
+        sommetK();
+        sommetL();
+    glEnd();
+}
+
+void DungeonView3D::DrawRightDoor(){
+    glBegin(GL_QUADS);
+        glColor4f(0.f,0.f,0.f,0.1f);
+        sommetQ(0.001);
+        sommetR(0.001);
+        sommetS(0.001);
+        sommetT(0.001);
     glEnd();
 }

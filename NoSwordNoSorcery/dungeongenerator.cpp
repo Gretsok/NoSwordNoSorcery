@@ -36,8 +36,15 @@ DungeonGenerator::DungeonGenerator()
         }
         printf("\n");
     }
+    /*for(int i = 0;i<5;i++){
+        for(int j =0;j<5;j++){
+            printf("%d ",layout[i][j]);
+        }
+        printf("\n");
+    }*/
 
 }
+
 
 Cell DungeonGenerator::FillRandomCell(int nodeNumber){
     Cell c;
@@ -57,6 +64,8 @@ Cell DungeonGenerator::FillRandomCell(int nodeNumber){
 void DungeonGenerator::FillCornerCells(){
     Cell c1,c2;
     int corner1,corner2;
+    vector<int> vec;
+
     corner1 = rand()%4;
     corner2 = rand()%4;
     while(corner2==corner1){
@@ -64,24 +73,44 @@ void DungeonGenerator::FillCornerCells(){
     }
     switch(corner1){
         case 0:
+            //vec = layout[0];
+            //vec[0] = 1;
+            //layout[0] = vec;
             dungeonLayout[0][0] = 1;
             c1.x = 0;
             c1.y = 0;
+            startRoomX = 0;
+            startRoomY = 0;
             break;
         case 1:
+            //vec = layout[0];
+            //vec[4] = 1;
+            //layout[0] = vec;
             dungeonLayout[0][4] = 1;
             c1.x = 0;
             c1.y = 4;
+            startRoomX = 0;
+            startRoomY = 4;
             break;
         case 2:
+            //vec = layout[4];
+            //vec[0] = 1;
+            //layout[4] = vec;
             dungeonLayout[4][0] = 1;
             c1.x = 4;
             c1.y = 0;
+            startRoomX = 4;
+            startRoomY = 0;
             break;
         case 3:
+            //vec = layout[4];
+            //vec[4] = 1;
+            //layout[4] = vec;
             dungeonLayout[4][4] = 1;
             c1.x = 4;
             c1.y = 4;
+            startRoomX = 4;
+            startRoomY = 4;
             break;
         default:
             break;
