@@ -59,6 +59,14 @@ void sommetQ(float layer=0){
 void sommetR(float layer=0){
     glVertex3f((5.f/8.f)*4,(((2.f/3.f)*4)-4)+(5.f/8.f)*(-(((2.f/3.f)*4)-4)),layer);
 }
+/*
+ * PLUS PETITE PORTE
+void sommetQ(float layer=0){
+    glVertex3f((3.f/8.f)*4,-(5.f/3.f),layer);
+}
+void sommetR(float layer=0){
+    glVertex3f((5.f/8.f)*4,-(4.f/3.f),layer);
+}*/
 void sommetS(float layer=0){
     glVertex3f((5.f/8.f)*4,-4 + (5.f/8.f)*(1.f/3.f)*4,layer);
 }
