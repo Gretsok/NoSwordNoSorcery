@@ -9,7 +9,10 @@ class DungeonView2D : public ADungeonView
 public:
     DungeonView2D();
     void Render(void);
-   // ~DungeonView2D();
+    void DrawTopDoor();
+    void DrawBottomDoor();
+    void DrawLeftDoor();
+    void DrawRightDoor();
 };
 
 #endif // DUNGEONVIEW2D_H
