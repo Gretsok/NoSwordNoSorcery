@@ -81,8 +81,15 @@ void ACollider::check_collisions()
 
         for(it = ACollider::RegisteredColliders.begin(); it != ACollider::RegisteredColliders.end(); ++it)
         {
-            Collision collision = *((*it)->ACollider::IsCollidingWithMe(this->m_origin, *vIt));
-            this->OnCollision(collision);
+            if((*it) != this)
+            {
+                Collision* collision = (*it)->ACollider::IsCollidingWithMe(this->m_origin, *vIt);
+                if(collision != NULL)
+                {
+                    this->OnCollision(*collision);
+                }
+
+            }
         }
     }
 }
