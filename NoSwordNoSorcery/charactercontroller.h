@@ -4,6 +4,7 @@
 #include "acontroller.h"
 #include "charactermodel.h"
 #include "acharacterview.h"
+#include "characterview2d.h"
 
 class CharacterController : public AController
 {

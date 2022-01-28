@@ -9,9 +9,11 @@ DungeonController::DungeonController(){
 void DungeonController::OnViewSwitched(){
     //PENSER A DESTROY LES OBJETS
     if(this->Viewis3D){
+        delete this->View;
         this->View = new DungeonView2D();
     }
-    /*else{
+    else{
+        delete this->View;
         this->View = new DungeonView3D();
-    }*/
+    }
 }

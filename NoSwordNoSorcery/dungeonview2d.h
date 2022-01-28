@@ -9,6 +9,7 @@ class DungeonView2D : public ADungeonView
 public:
     DungeonView2D();
     void Render(void);
+   // ~DungeonView2D();
 };
 
 #endif // DUNGEONVIEW2D_H

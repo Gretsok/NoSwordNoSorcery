@@ -38,7 +38,7 @@ void GLDisplayWidget::paintGL(){
 
     glTranslatef(0.0, 0.0, _Z);
 
-    dungeonController.Render();
+    gameManager.Update();
 }
 
 void GLDisplayWidget::resizeGL(int width, int height){
