@@ -1,5 +1,5 @@
 #include "gamemanager.h"
-
+#include<QDebug>
 
 GameManager::GameManager()
 {
@@ -18,7 +18,8 @@ void GameManager::Update()
     float timeOfNow = clock();
     GameManager::s_deltaTime = double(timeOfNow - this->m_timeOfLastFrame)/CLOCKS_PER_SEC;
     this->m_timeOfLastFrame = timeOfNow;
-    printf("truc");
+
+    qDebug() << " delta Time : " << GameManager::GetDeltaTime();
 }
 
 
