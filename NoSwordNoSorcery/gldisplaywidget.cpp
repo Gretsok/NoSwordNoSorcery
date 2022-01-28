@@ -24,6 +24,8 @@ void GLDisplayWidget::initializeGL()
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_LIGHT0);
     glEnable(GL_COLOR_MATERIAL);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     fprintf(stderr, "initialisation du Gl\n");
 }

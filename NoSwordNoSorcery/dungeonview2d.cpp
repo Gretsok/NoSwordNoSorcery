@@ -5,7 +5,7 @@ DungeonView2D::DungeonView2D()
 
 }
 
-void DrawTopDoor(void){
+void DungeonView2D::DrawTopDoor(void){
     glBegin(GL_QUADS);
         glColor3f(0.f,0.f,0.f);
         glVertex3f(-1,4,0);
@@ -15,7 +15,7 @@ void DrawTopDoor(void){
     glEnd();
 }
 
-void DrawRightDoor(void){
+void DungeonView2D::DrawRightDoor(void){
     glBegin(GL_QUADS);
         glColor3f(0.f,0.f,0.f);
         glVertex3f(3.5,0.5,0);
@@ -25,7 +25,7 @@ void DrawRightDoor(void){
     glEnd();
 }
 
-void DrawLeftDoor(void){
+void DungeonView2D::DrawLeftDoor(void){
     glBegin(GL_QUADS);
         glColor3f(0.f,0.f,0.f);
         glVertex3f(-3.5,0.5,0);
@@ -35,7 +35,7 @@ void DrawLeftDoor(void){
     glEnd();
 }
 
-void DrawBottomDoor(void){
+void DungeonView2D::DrawBottomDoor(void){
     glBegin(GL_QUADS);
         glColor3f(0.f,0.f,0.f);
         glVertex3f(-1,-4,0);
