@@ -10,7 +10,10 @@ class GameManager
 public:
     GameManager();
     void Update();
+    static double GetDeltaTime();
 private:
+    static double s_deltaTime;
+    double m_timeOfLastFrame;
     DungeonGenerator* m_dungeonGenerator;
     DungeonController* m_dungeonController;
     CharacterController* m_characterController;
