@@ -3,8 +3,8 @@
 
 
 DungeonController::DungeonController(){
-    this->View = new DungeonView3D();
-    this->Viewis3D = true;
+    this->View = new DungeonView2D();
+    this->Viewis3D = false;
     this->Model = new DungeonModel();
 }
 
