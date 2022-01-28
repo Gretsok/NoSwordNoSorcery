@@ -18,3 +18,19 @@ void DungeonController::OnViewSwitched(){
         this->View = new DungeonView3D();
     }
 }
+
+void DungeonController::Render(void){
+    if(((DungeonModel *)this->Model)->TopDoor()){
+        ((ADungeonView *)this->View)->DrawTopDoor();
+    }
+    if(((DungeonModel *)this->Model)->BottomDoor()){
+        ((ADungeonView *)this->View)->DrawBottomDoor();
+    }
+    if(((DungeonModel *)this->Model)->LeftDoor()){
+        ((ADungeonView *)this->View)->DrawLeftDoor();
+    }
+    if(((DungeonModel *)this->Model)->RightDoor()){
+        ((ADungeonView *)this->View)->DrawRightDoor();
+    }
+    AController::Render();
+}

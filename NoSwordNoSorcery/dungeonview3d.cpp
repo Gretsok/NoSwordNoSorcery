@@ -101,8 +101,6 @@ void DungeonView3D::Render(){
         sommetD(0.001);
     glEnd();
 
-    DrawRightDoor();
-
 
     //DESSUS DES MURS
     glBegin(GL_LINE_STRIP);
