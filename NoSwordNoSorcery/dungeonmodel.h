@@ -15,6 +15,10 @@ public:
     bool BottomDoor(void);
     bool LeftDoor(void);
     bool RightDoor(void);
+    void MoveRightRoom(void);
+    void MoveLeftRoom(void);
+    void MoveTopRoom(void);
+    void MoveBottomRoom(void);
 };
 
 #endif // DUNGEONMODEL_H

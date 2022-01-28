@@ -29,3 +29,16 @@ bool DungeonModel::RightDoor(){
     }
     else return false;
 }
+
+void DungeonModel::MoveRightRoom(){
+    this->yRoomIndex = this->yRoomIndex+1;
+}
+void DungeonModel::MoveLeftRoom(){
+    this->yRoomIndex = this->yRoomIndex-1;
+}
+void DungeonModel::MoveTopRoom(){
+    this->xRoomIndex = this->xRoomIndex-1;
+}
+void DungeonModel::MoveBottomRoom(){
+    this->xRoomIndex = this->xRoomIndex+1;
+}
