@@ -41,6 +41,7 @@ SOURCES += \
     collider2dsquare.cpp \
     collider3dbox.cpp \
     collider3dsphere.cpp \
+    dungeonview3d.cpp \
     gamemanager.cpp \
     dungeonmodel.cpp \
     dungeonview2d.cpp \
@@ -56,6 +57,7 @@ HEADERS += \
     dungeoncontroller.h \
     collision.h \
     dungeongenerator.h \
+    dungeonview3d.h \
     gamemanager.h \
     dungeonmodel.h \
     dungeonview2d.h \

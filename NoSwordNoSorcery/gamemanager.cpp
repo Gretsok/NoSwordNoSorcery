@@ -4,6 +4,8 @@
 GameManager::GameManager()
 {
     this->m_timeOfLastFrame = clock();
+    this->m_dungeonController = new DungeonController();
+    this->m_characterController = new CharacterController();
 }
 
 double GameManager::s_deltaTime = 0.0f;
@@ -28,6 +30,7 @@ void GameManager::update_game_states()
 
 void GameManager::render()
 {
+    this->m_characterController->Render();
     this->m_dungeonController->Render();
     this->m_characterController->Render();
 }

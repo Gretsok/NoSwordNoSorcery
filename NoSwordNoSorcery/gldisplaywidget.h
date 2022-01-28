@@ -9,6 +9,7 @@
 #include <QTimer>
 #include "dungeoncontroller.h"
 #include "charactercontroller.h"
+#include "gamemanager.h"
 
 class GLDisplayWidget : public QGLWidget
 {
@@ -33,8 +34,7 @@ private:
     float _X, _Y ,_Z; // Translation
 
     QPoint _lastPosMouse; // To keep the last position of the mouse
-    DungeonController dungeonController;
-    CharacterController characterController;
+    GameManager gameManager;
 };
 
 #endif // GLDISPLAYWIDGET_H
