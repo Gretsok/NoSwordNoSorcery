@@ -5,10 +5,12 @@ CharacterModel::CharacterModel() : APhysicalObjectModel()
 {
     this->m_2DCollider = new ColliderController(new Collider2DSquare(QVector3D(0, 0, 0), QVector3D(0.25f, 0.25f, 0)));
     this->m_accelerationSpeed = 8.f;
+    ((ACollider*)this->m_2DCollider->Model)->AddCollisionObserver(this);
 }
 
 CharacterModel::~CharacterModel()
 {
+    ((ACollider*)this->m_2DCollider->Model)->RemoveCollisionObserver(this);
     delete this->m_2DCollider;
 }
 

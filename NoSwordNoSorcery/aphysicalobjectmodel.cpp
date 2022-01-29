@@ -40,7 +40,7 @@ QVector3D APhysicalObjectModel::GetPositions()
     return ((ACollider*) this->m_2DCollider->Model)->GetOrigin();
 }
 
-void APhysicalObjectModel::HandleCollision(Collision)
+void APhysicalObjectModel::HandleCollision(Collision a_collision)
 {
     qDebug() << "On est des boss";
 }
