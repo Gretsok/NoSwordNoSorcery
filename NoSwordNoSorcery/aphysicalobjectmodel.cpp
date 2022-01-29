@@ -10,11 +10,13 @@ APhysicalObjectModel::APhysicalObjectModel()
     this->m_deceleration = 3.f;
     this->m_maxSpeed = 5.f;
     this->m_speed = 0.f;
-    //((ACollider*) this->m_2DCollider->Model)->OnCollision = this->HandlingCollision;
+    ((ACollider*)this->m_2DCollider->Model)->AddCollisionObserver(this);
+    qDebug() << "Collision observer added";
 }
 
 APhysicalObjectModel::~APhysicalObjectModel()
 {
+    ((ACollider*)this->m_2DCollider->Model)->RemoveCollisionObserver(this);
     delete this->m_2DCollider;
 }
 
@@ -24,11 +26,6 @@ void APhysicalObjectModel::ApplyAcceleration(QVector3D a_accelerationToAdd)
     m_currentMovement += a_accelerationToAdd * GameManager::GetDeltaTime();
     m_speed = m_currentMovement.length();
     m_currentMovement.normalize();
-}
-
-void APhysicalObjectModel::HandlingCollision(Collision collision)
-{
-    qDebug() << "On est des boss";
 }
 
 void APhysicalObjectModel::UpdateGameStates(void)
@@ -41,4 +38,9 @@ void APhysicalObjectModel::UpdateGameStates(void)
 QVector3D APhysicalObjectModel::GetPositions()
 {
     return ((ACollider*) this->m_2DCollider->Model)->GetOrigin();
+}
+
+void APhysicalObjectModel::HandleCollision(Collision)
+{
+    qDebug() << "On est des boss";
 }

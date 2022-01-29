@@ -10,12 +10,6 @@ class DungeonModel : public AModel
 public:
     DungeonModel();
     ~DungeonModel();
-protected:
-    ColliderController* m_topCollider;
-    ColliderController* m_rightCollider;
-    ColliderController* m_botCollider;
-    ColliderController* m_leftCollider;
-    void SwitchView(bool a_to3D);
     DungeonGenerator dungeonGenerator;
     int xRoomIndex = dungeonGenerator.startRoomX;
     int yRoomIndex = dungeonGenerator.startRoomY;
@@ -27,6 +21,13 @@ protected:
     void MoveLeftRoom(void);
     void MoveTopRoom(void);
     void MoveBottomRoom(void);
+protected:
+    ColliderController* m_topCollider;
+    ColliderController* m_rightCollider;
+    ColliderController* m_botCollider;
+    ColliderController* m_leftCollider;
+    void SwitchView(bool a_to3D);
+
 private:
     void switch_to_2D();
     void switch_to_3D();

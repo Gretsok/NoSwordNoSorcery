@@ -39,13 +39,13 @@ QVector3D ACollider::GetVectorFromTwoPoints(QVector3D a_origin, QVector3D a_dest
 ACollider::ACollider()
 {
     this->m_origin = QVector3D(0, 0, 0);
-
+    this->m_collisionObservers = std::list<ACollisionObserver*>();
 }
 
 ACollider::ACollider(QVector3D a_center)
 {
     this->m_origin = a_center;
-
+    this->m_collisionObservers = std::list<ACollisionObserver*>();
 }
 
 ACollider::~ACollider()
@@ -68,6 +68,18 @@ QVector3D ACollider::GetOrigin()
     return this->m_origin;
 }
 
+void ACollider::AddCollisionObserver(ACollisionObserver* a_collisionObserver)
+{
+    this->m_collisionObservers.push_back(a_collisionObserver);
+    qDebug() << "just added a new collision observer" << this->m_collisionObservers.size();
+}
+
+void ACollider::RemoveCollisionObserver(ACollisionObserver* a_collisionObserver)
+{
+    this->m_collisionObservers.remove(a_collisionObserver);
+    qDebug() << "just removed a new collision observer" << this->m_collisionObservers.size();
+}
+
 std::list<OrientedLine> ACollider::Debug_GetLines()
 {
     return this->get_intersectors();
@@ -88,17 +100,11 @@ void ACollider::check_collisions()
             {
                 Collision collision = ((ACollider*)((*it)->Model))->IsCollidingWithMe((*vIt).GetOrigin(),
                                                                                    ACollider::GetVectorFromTwoPoints((*vIt).GetOrigin(), (*vIt).GetDestination()));
-
                 if(collision.HasCollision)
                 {
-                    if(this->OnCollision != NULL)
-                    {
-                        (this->*OnCollision)(collision);
-                    }
-
+                    notify_collision(collision);
+                    //((ACollider*)((*it)->Model))->notify_collision(collision);
                 }
-                //qDebug() << collision;
-
             }
         }
     }
@@ -109,4 +115,14 @@ std::list<OrientedLine> ACollider::get_intersectors()
     return { OrientedLine() };
 }
 
+void ACollider::notify_collision(Collision a_collision)
+{
+    //qDebug() << "oui" << this->m_collisionObservers.size();
+    std::list<ACollisionObserver*>::iterator it;
+    for(it = this->m_collisionObservers.begin(); it != this->m_collisionObservers.end(); ++it)
+    {
+
+        (*it)->HandleCollision(a_collision);
+    }
+}
 

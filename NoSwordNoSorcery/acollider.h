@@ -4,11 +4,11 @@
 #include "amodel.h"
 #include "collision.h"
 #include "line.h"
+#include "acollisionobserver.h"
 #include <QVector3D>
 
 class ACollider : public AModel
 {
-    typedef void(AModel::*CollisionDelegate)(Collision);
 public:
     static bool AreIntersected(QVector3D a_intersectorOrigin, QVector3D a_intersectorVector, QVector3D a_intersectedOrigin, QVector3D a_intersectedVector);
     static bool AreIntersected(QVector3D a_intersectorOrigin, QVector3D a_vectorIntersecter, QVector3D a_circleCenter, float a_circleRadius);
@@ -18,15 +18,18 @@ public:
     ~ACollider();
     void OnMove(QVector3D a_newOrigin);
     virtual Collision IsCollidingWithMe(QVector3D a_intersectorOrigin, QVector3D a_intersectorVector);
-    CollisionDelegate OnCollision;
     QVector3D GetOrigin();
     virtual std::list<OrientedLine> Debug_GetLines();
+    void AddCollisionObserver(ACollisionObserver* a_collisionObserver);
+    void RemoveCollisionObserver(ACollisionObserver* a_collisionObserver);
 private:
     void check_collisions();
 
 protected:
     QVector3D m_origin;
     virtual std::list<OrientedLine> get_intersectors();
+    std::list<ACollisionObserver*> m_collisionObservers;
+    void notify_collision(Collision a_collision);
 };
 
 #endif // ACOLLIDER_H
