@@ -11,6 +11,7 @@ class CharacterController : public AController
 {
 public:
     CharacterController();
+    virtual ~CharacterController();
     virtual void OnViewSwitched();
     virtual void UpdateGameStates(void);
 };

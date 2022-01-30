@@ -9,6 +9,7 @@ class GameManager
 {
 public:
     GameManager();
+    ~GameManager();
     void Update();
     static double GetDeltaTime();
 private:

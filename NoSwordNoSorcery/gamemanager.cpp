@@ -12,6 +12,14 @@ GameManager::GameManager()
     this->m_displayColliders = true;
 }
 
+GameManager::~GameManager()
+{
+    delete this->m_dungeonController;
+    delete this->m_characterController;
+}
+
+
+
 double GameManager::s_deltaTime = 0.0f;
 
 void GameManager::Update()

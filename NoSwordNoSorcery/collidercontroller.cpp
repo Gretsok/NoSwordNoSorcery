@@ -1,5 +1,6 @@
 #include "collidercontroller.h"
 #include "colliderview.h"
+#include "QDebug"
 
 ColliderController::ColliderController()
 {

@@ -39,13 +39,11 @@ QVector3D ACollider::GetVectorFromTwoPoints(QVector3D a_origin, QVector3D a_dest
 ACollider::ACollider()
 {
     this->m_origin = QVector3D(0, 0, 0);
-    this->m_collisionObservers = std::list<ACollisionObserver*>();
 }
 
 ACollider::ACollider(QVector3D a_center)
 {
     this->m_origin = a_center;
-    this->m_collisionObservers = std::list<ACollisionObserver*>();
 }
 
 ACollider::~ACollider()
@@ -71,7 +69,7 @@ QVector3D ACollider::GetOrigin()
 void ACollider::AddCollisionObserver(ACollisionObserver* a_collisionObserver)
 {
     this->m_collisionObservers.push_back(a_collisionObserver);
-   //qDebug()<< "just added a new collision observer" << this->m_collisionObservers.size();
+   //qDebug()<< "just added a new collision observer" << ACollider::m_collisionObservers.size();
 }
 
 void ACollider::RemoveCollisionObserver(ACollisionObserver* a_collisionObserver)
@@ -101,8 +99,8 @@ void ACollider::check_collisions()
                                                                                    ACollider::GetVectorFromTwoPoints((*vIt).GetOrigin(), (*vIt).GetDestination()));
                 if(collision.HasCollision)
                 {
-                    notify_collision(collision);
-                    //((ACollider*)((*it)->Model))->notify_collision(collision);
+                    //notify_collision(collision);
+                    ((ACollider*)((*it)->Model))->notify_collision(collision);
                 }
             }
         }
@@ -114,13 +112,17 @@ std::list<OrientedLine> ACollider::get_intersectors()
     return { OrientedLine() };
 }
 
+std::list<ACollisionObserver*>& ACollider::GetCollisionObservers()
+{
+    return m_collisionObservers;
+}
+
 void ACollider::notify_collision(Collision a_collision)
 {
     //qDebug() << "oui" << this->m_collisionObservers.size();
     std::list<ACollisionObserver*>::iterator it;
-    for(it = this->m_collisionObservers.begin(); it != this->m_collisionObservers.end(); ++it)
+    for(it = m_collisionObservers.begin(); it != this->m_collisionObservers.end(); ++it)
     {
-
         (*it)->HandleCollision(a_collision);
     }
 }

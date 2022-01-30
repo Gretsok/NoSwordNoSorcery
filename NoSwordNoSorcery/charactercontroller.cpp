@@ -5,6 +5,10 @@ CharacterController::CharacterController(){
     this->Model = new CharacterModel();
 }
 
+CharacterController::~CharacterController(){
+
+}
+
 void CharacterController::OnViewSwitched()
 {    //PENSER A DESTROY LES OBJETS
     if(this->Viewis3D){

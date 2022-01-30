@@ -29,7 +29,9 @@ protected:
     QVector3D m_origin;
     virtual std::list<OrientedLine> get_intersectors();
     std::list<ACollisionObserver*> m_collisionObservers;
+    std::list<ACollisionObserver*>& GetCollisionObservers();
     void notify_collision(Collision a_collision);
+
 };
 
 #endif // ACOLLIDER_H
