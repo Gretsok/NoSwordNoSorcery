@@ -9,11 +9,11 @@ class ColliderController : public AController
 public:
     ColliderController();
     ColliderController(ACollider* a_colliderToUse);
-    ~ColliderController();
+    virtual ~ColliderController();
     void ChangeCollider(ACollider* a_colliderToUse);
-    static std::list<ColliderController*> GetColliderControllers();
-    virtual void UpdateGameStates(void);
-    virtual void OnViewSwitched();
+    static std::list<ColliderController*>& GetColliderControllers();
+    void UpdateGameStates(void);
+    void OnViewSwitched();
 protected:
     static std::list<ColliderController*> m_colliderControllers;
 

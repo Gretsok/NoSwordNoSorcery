@@ -22,10 +22,11 @@ public:
     void MoveTopRoom(void);
     void MoveBottomRoom(void);
 protected:
-    ColliderController* m_topCollider;
+    /*ColliderController* m_topCollider;
     ColliderController* m_rightCollider;
     ColliderController* m_botCollider;
-    ColliderController* m_leftCollider;
+    ColliderController* m_leftCollider;*/
+    ColliderController* m_wallsCollider;
     void SwitchView(bool a_to3D);
 
 private:

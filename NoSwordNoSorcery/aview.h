@@ -5,6 +5,7 @@ class AView
 {
 public:
     AView();
+    virtual ~AView();
     virtual void Render(void) = 0;
     virtual void Update(void);
 protected:

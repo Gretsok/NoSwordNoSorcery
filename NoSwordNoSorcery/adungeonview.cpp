@@ -3,7 +3,7 @@
 
 ADungeonView::ADungeonView() : AView {}
 {
-  qDebug() << "constructor ADungeonView";
+ //qDebug()<< "constructor ADungeonView";
 }
 
 void ADungeonView::Render(){

@@ -11,7 +11,7 @@ APhysicalObjectModel::APhysicalObjectModel()
     this->m_maxSpeed = 5.f;
     this->m_speed = 0.f;
     ((ACollider*)this->m_2DCollider->Model)->AddCollisionObserver(this);
-    qDebug() << "Collision observer added";
+   //qDebug()<< "Collision observer added";
 }
 
 APhysicalObjectModel::~APhysicalObjectModel()
@@ -42,5 +42,5 @@ QVector3D APhysicalObjectModel::GetPositions()
 
 void APhysicalObjectModel::HandleCollision(Collision a_collision)
 {
-    qDebug() << "On est des boss";
+   //qDebug()<< "On est des boss";
 }

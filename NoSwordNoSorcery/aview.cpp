@@ -3,7 +3,11 @@
 
 AView::AView()
 {
-    qDebug() << "constructor AView";
+   //qDebug()<< "constructor AView";
+}
+
+AView::~AView(){
+
 }
 
 void AView::Update()

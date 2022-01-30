@@ -71,13 +71,13 @@ QVector3D ACollider::GetOrigin()
 void ACollider::AddCollisionObserver(ACollisionObserver* a_collisionObserver)
 {
     this->m_collisionObservers.push_back(a_collisionObserver);
-    qDebug() << "just added a new collision observer" << this->m_collisionObservers.size();
+   //qDebug()<< "just added a new collision observer" << this->m_collisionObservers.size();
 }
 
 void ACollider::RemoveCollisionObserver(ACollisionObserver* a_collisionObserver)
 {
     this->m_collisionObservers.remove(a_collisionObserver);
-    qDebug() << "just removed a new collision observer" << this->m_collisionObservers.size();
+   //qDebug()<< "just removed a new collision observer" << this->m_collisionObservers.size();
 }
 
 std::list<OrientedLine> ACollider::Debug_GetLines()
@@ -93,7 +93,6 @@ void ACollider::check_collisions()
     for(vIt = intersectors.begin(); vIt != intersectors.end(); ++vIt)
     {
         std::list<ColliderController*>::iterator it;
-
         for(it = ColliderController::GetColliderControllers().begin(); it != ColliderController::GetColliderControllers().end(); ++it)
         {
             if((*it)->Model != this)

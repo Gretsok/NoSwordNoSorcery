@@ -4,10 +4,10 @@
 
 GameManager::GameManager()
 {
-    qDebug() << "Constructor GameManager";
+   //qDebug()<< "Constructor GameManager";
     this->m_timeOfLastFrame = clock();
     this->m_dungeonController = new DungeonController();
-    qDebug() << "DungeonController created";
+   //qDebug()<< "DungeonController created";
     this->m_characterController = new CharacterController();
     this->m_displayColliders = true;
 }

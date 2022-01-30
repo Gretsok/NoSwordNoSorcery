@@ -38,7 +38,7 @@ void ColliderController::OnViewSwitched()
 }
 
 std::list<ColliderController*> ColliderController::m_colliderControllers = std::list<ColliderController*>();
-std::list<ColliderController*> ColliderController::GetColliderControllers()
+std::list<ColliderController*>& ColliderController::GetColliderControllers()
 {
     return m_colliderControllers;
 }

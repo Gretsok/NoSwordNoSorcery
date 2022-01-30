@@ -3,7 +3,7 @@
 
 DungeonView2D::DungeonView2D()
 {
-    qDebug() << "constructor DungeonView2D";
+   //qDebug()<< "constructor DungeonView2D";
 }
 
 void DungeonView2D::DrawTopDoor(void){
