@@ -126,6 +126,7 @@ void ACollider::check_collisions()
                 {
                     //notify_collision(collision);
                     ((ACollider*)((*it)->Model))->notify_collision(collision);
+                    return;
                 }
             }
         }
@@ -145,10 +146,11 @@ std::list<ACollisionObserver*>& ACollider::GetCollisionObservers()
 void ACollider::notify_collision(Collision a_collision)
 {
     //qDebug() << "oui" << this->m_collisionObservers.size();
-    std::list<ACollisionObserver*>::iterator it;
-    for(it = m_collisionObservers.begin(); it != this->m_collisionObservers.end(); ++it)
-    {
-        (*it)->HandleCollision(a_collision);
-    }
+    //std::list<ACollisionObserver*>::iterator it;
+    (*this->m_collisionObservers.begin())->HandleCollision(a_collision);
+    //for(it = m_collisionObservers.begin(); it != this->m_collisionObservers.end(); ++it)
+    //{
+    //    (*it)->HandleCollision(a_collision);
+    //}
 }
 

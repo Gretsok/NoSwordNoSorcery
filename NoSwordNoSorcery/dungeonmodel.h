@@ -25,8 +25,13 @@ public:
     void MoveLeftRoom(void);
     void MoveTopRoom(void);
     void MoveBottomRoom(void);
+    void ClearRoomColliders(void);
+    void MoveRoom(void);
     virtual void HandleCollision(Collision);
     void HandleTopDoorCollision(Collision);
+    void HandleBottomDoorCollision(Collision);
+    void HandleLeftDoorCollision(Collision);
+    void HandleRightDoorCollision(Collision);
 protected:
     /*ColliderController* m_topCollider;
     ColliderController* m_rightCollider;
@@ -38,6 +43,9 @@ protected:
     ColliderController* m_leftDoorCollider;
     ColliderController* m_rightDoorCollider;
     ACollisionObserver* m_topDoorCollisionObserver;
+    ACollisionObserver* m_bottomDoorCollisionObserver;
+    ACollisionObserver* m_leftDoorCollisionObserver;
+    ACollisionObserver* m_rightDoorCollisionObserver;
     void SwitchView(bool a_to3D);
 
 private:
@@ -56,6 +64,48 @@ public:
     DungeonModel* dungeon;
     virtual void HandleCollision(Collision collision){
         dungeon->HandleTopDoorCollision(collision);
+    };
+};
+
+class BottomDoorCollisionObserver : public ACollisionObserver
+{
+public:
+    BottomDoorCollisionObserver();
+    BottomDoorCollisionObserver(DungeonModel *dungeon){
+        this->dungeon = dungeon;
+    }
+    ~BottomDoorCollisionObserver();
+    DungeonModel* dungeon;
+    virtual void HandleCollision(Collision collision){
+        dungeon->HandleBottomDoorCollision(collision);
+    };
+};
+
+class LeftDoorCollisionObserver : public ACollisionObserver
+{
+public:
+    LeftDoorCollisionObserver();
+    LeftDoorCollisionObserver(DungeonModel *dungeon){
+        this->dungeon = dungeon;
+    }
+    ~LeftDoorCollisionObserver();
+    DungeonModel* dungeon;
+    virtual void HandleCollision(Collision collision){
+        dungeon->HandleLeftDoorCollision(collision);
+    };
+};
+
+class RightDoorCollisionObserver : public ACollisionObserver
+{
+public:
+    RightDoorCollisionObserver();
+    RightDoorCollisionObserver(DungeonModel *dungeon){
+        this->dungeon = dungeon;
+    }
+    ~RightDoorCollisionObserver();
+    DungeonModel* dungeon;
+    virtual void HandleCollision(Collision collision){
+        dungeon->HandleRightDoorCollision(collision);
     };
 };
 
