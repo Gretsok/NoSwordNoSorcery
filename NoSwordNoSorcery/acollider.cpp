@@ -4,14 +4,38 @@
 
 bool ACollider::AreIntersected(QVector3D a_intersectorOrigin, QVector3D a_intersectorVector, QVector3D a_intersectedOrigin, QVector3D a_intersectedVector)
 {
-    QVector3D u = QVector3D::crossProduct(ACollider::GetVectorFromTwoPoints(a_intersectedOrigin, a_intersectedOrigin + a_intersectedVector),
+    /*QVector3D u = QVector3D::crossProduct(ACollider::GetVectorFromTwoPoints(a_intersectedOrigin, a_intersectedOrigin + a_intersectedVector),
                                           ACollider::GetVectorFromTwoPoints(a_intersectedOrigin, a_intersectorOrigin));
     QVector3D v = QVector3D::crossProduct(ACollider::GetVectorFromTwoPoints(a_intersectedOrigin, a_intersectorOrigin + a_intersectorVector),
                                           ACollider::GetVectorFromTwoPoints(a_intersectedOrigin, a_intersectedOrigin + a_intersectedVector));
+*/
+  //  float dotProduct = QVector3D::dotProduct(u, v);
 
-    float dotProduct = QVector3D::dotProduct(u, v);
+    //return (dotProduct / (u.length() * v.length())) > 0.f;
 
-    return (dotProduct / (u.length() * v.length())) > 0;
+    QVector3D CmP = ACollider::GetVectorFromTwoPoints(a_intersectedOrigin,a_intersectorOrigin);
+    QVector3D r = ACollider::GetVectorFromTwoPoints(a_intersectedOrigin,a_intersectedOrigin+a_intersectedVector);
+    QVector3D s = ACollider::GetVectorFromTwoPoints(a_intersectorOrigin,a_intersectorOrigin+a_intersectorVector);
+
+    float CmPxr = CmP.x() * r.y() - CmP.y() * r.x();
+    float CmPxs = CmP.x()*s.y() - CmP.y() * s.x();
+    float rxs = r.x()*s.y() - r.y()*s.x();
+
+    if(CmPxr==0.f){
+        //Lines are collinear, and so intersect if they have any overlap
+        return ((a_intersectorOrigin.x() - a_intersectedOrigin.x() < 0.f) != (a_intersectorOrigin.x()-(a_intersectedOrigin+a_intersectedVector).x() < 0.f))
+                || ((a_intersectorOrigin.y() - a_intersectedOrigin.y() < 0.f) != (a_intersectorOrigin.y()-(a_intersectedOrigin+a_intersectedVector).y() < 0.f));
+    }
+
+    if(rxs==0.f){
+        return false;
+    }
+    float rxsr = 1.f/rxs;
+    float t = CmPxs * rxsr;
+    float u = CmPxr * rxsr;
+    return (t>=0.f) && (t <= 1.f) && (u>=0.f) && (u<=1.f);
+
+
 }
 bool ACollider::AreIntersected(QVector3D a_intersectorOrigin, QVector3D a_vectorIntersecter, QVector3D a_circleCenter, float a_circleRadius)
 {
@@ -97,6 +121,7 @@ void ACollider::check_collisions()
             {
                 Collision collision = ((ACollider*)((*it)->Model))->IsCollidingWithMe((*vIt).GetOrigin(),
                                                                                    ACollider::GetVectorFromTwoPoints((*vIt).GetOrigin(), (*vIt).GetDestination()));
+
                 if(collision.HasCollision)
                 {
                     //notify_collision(collision);

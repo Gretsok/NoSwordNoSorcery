@@ -67,7 +67,7 @@ void DungeonModel::switch_to_2D()
         ((ACollider*)this->m_topDoorCollider->Model)->AddCollisionObserver(m_topDoorCollisionObserver);
     }
     if(this->BottomDoor()){
-        this->m_topDoorCollider = new ColliderController(new Collider2DSquare(QVector3D(0,-4,0),QVector3D(1,1,0)));
+        this->m_topDoorCollider = new ColliderController(new Collider2DSquare(QVector3D(0,-4,0),QVector3D(0.5,0.5,0)));
     }
 }
 void DungeonModel::switch_to_3D()
