@@ -129,20 +129,3 @@ void DungeonView2D::Render(void){
     glEnd();
 
 }
-
-QVector3D DungeonView2D::GetBottomDoorEntrancePosition()
-{
-    return QVector3D(0,-3,0);
-}
-QVector3D DungeonView2D::GetTopDoorEntrancePosition()
-{
- return QVector3D(0,3,0);
-}
-QVector3D DungeonView2D::GetLeftDoorEntrancePosition()
-{
-    return QVector3D(-3,0,0);
-}
-QVector3D DungeonView2D::GetRightDoorEntrancePosition()
-{
-    return QVector3D(3,0,0);
-}
