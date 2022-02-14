@@ -7,6 +7,8 @@ class BulletView3D : public ABulletView
 {
 public:
     BulletView3D();
+    virtual ~BulletView3D();
+    virtual void Render(void);
 };
 
 #endif // BULLETVIEW3D_H

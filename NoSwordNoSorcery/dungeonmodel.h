@@ -14,7 +14,7 @@ class DungeonModel : public AModel, ACollisionObserver
 public:
     DungeonModel();
     DungeonModel(DungeonController*);
-    ~DungeonModel();
+    virtual ~DungeonModel();
     DungeonGenerator dungeonGenerator;
     DungeonController* dungeonController;
     int xRoomIndex = dungeonGenerator.startRoomX;
@@ -58,7 +58,7 @@ public:
     TopDoorCollisionObserver(DungeonModel *dungeon){
         this->dungeon = dungeon;
     }
-    ~TopDoorCollisionObserver();
+    virtual ~TopDoorCollisionObserver();
     DungeonModel* dungeon;
     virtual void HandleCollision(Collision collision){
         dungeon->HandleTopDoorCollision(collision);
@@ -72,7 +72,7 @@ public:
     BottomDoorCollisionObserver(DungeonModel *dungeon){
         this->dungeon = dungeon;
     }
-    ~BottomDoorCollisionObserver();
+    virtual ~BottomDoorCollisionObserver();
     DungeonModel* dungeon;
     virtual void HandleCollision(Collision collision){
         dungeon->HandleBottomDoorCollision(collision);
@@ -86,7 +86,7 @@ public:
     LeftDoorCollisionObserver(DungeonModel *dungeon){
         this->dungeon = dungeon;
     }
-    ~LeftDoorCollisionObserver();
+    virtual ~LeftDoorCollisionObserver();
     DungeonModel* dungeon;
     virtual void HandleCollision(Collision collision){
         dungeon->HandleLeftDoorCollision(collision);
@@ -100,7 +100,7 @@ public:
     RightDoorCollisionObserver(DungeonModel *dungeon){
         this->dungeon = dungeon;
     }
-    ~RightDoorCollisionObserver();
+    virtual ~RightDoorCollisionObserver();
     DungeonModel* dungeon;
     virtual void HandleCollision(Collision collision){
         dungeon->HandleRightDoorCollision(collision);

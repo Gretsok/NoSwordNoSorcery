@@ -8,6 +8,7 @@ class Collision
 public:
     Collision();
     Collision(QVector3D a_normal);
+    virtual ~Collision();
     QVector3D GetNormal();
     bool HasCollision = false;
     bool IsTrigger = false;

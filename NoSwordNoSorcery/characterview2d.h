@@ -8,7 +8,8 @@ class CharacterView2D : public ACharacterView
 {
 public:
     CharacterView2D();
-    void Render(void);
+    virtual ~CharacterView2D();
+    virtual void Render(void);
 };
 
 #endif // CHARACTERVIEW2D_H

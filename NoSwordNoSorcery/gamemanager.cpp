@@ -1,5 +1,6 @@
 #include "gamemanager.h"
 #include "collidercontroller.h"
+#include "bulletsmanager.h"
 #include<QDebug>
 
 GameManager::GameManager()
@@ -39,7 +40,7 @@ void GameManager::update_game_states()
 {
     this->m_characterController->UpdateGameStates();
     this->m_dungeonController->UpdateGameStates();
-
+    BulletsManager::UpdateGameStates();
     if(this->m_displayColliders)
     {
         std::list<ColliderController*>::iterator it;
@@ -62,6 +63,7 @@ void GameManager::render()
         }
     }
     this->m_characterController->Render();
+    BulletsManager::Render();
     this->m_dungeonController->Render();
 }
 

@@ -45,6 +45,10 @@ DungeonGenerator::DungeonGenerator()
 
 }
 
+DungeonGenerator::~DungeonGenerator()
+{
+
+}
 
 Cell DungeonGenerator::FillRandomCell(int nodeNumber){
     Cell c;

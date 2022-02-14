@@ -4,3 +4,8 @@ ACollisionObserver::ACollisionObserver()
 {
 
 }
+
+ACollisionObserver::~ACollisionObserver()
+{
+
+}

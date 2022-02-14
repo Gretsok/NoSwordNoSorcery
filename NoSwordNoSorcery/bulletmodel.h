@@ -7,7 +7,7 @@ class BulletModel : public APhysicalObjectModel
 {
 public:
     BulletModel();
-    ~BulletModel();
+    virtual ~BulletModel();
     bool IsDead();
 private:
     float m_lifeTime;

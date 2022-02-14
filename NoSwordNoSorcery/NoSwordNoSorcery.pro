@@ -22,10 +22,8 @@ SOURCES += \
     abulletview.cpp \
     acharacterview.cpp \
     acollider.cpp \
-    acombatmanagermodel.cpp \
     acombatmanagerview.cpp \
     acontroller.cpp \
-    adamagedealermodel.cpp \
     amodel.cpp \
     aphysicalobjectmodel.cpp \
     aview.cpp \
@@ -43,8 +41,6 @@ SOURCES += \
     characterview3d.cpp \
     collider2dcircle.cpp \
     collider2dsquare.cpp \
-    collider3dbox.cpp \
-    collider3dsphere.cpp \
     dungeonview3d.cpp \
     gamemanager.cpp \
     dungeonmodel.cpp \
@@ -53,9 +49,6 @@ SOURCES += \
     line.cpp \
     main.cpp \
     mainwindow.cpp \
-    shootingabilitycontroller.cpp \
-    shootingabilitymodel.cpp \
-    shootingabilityview.cpp \
     utils.cpp
 
 HEADERS += \
@@ -78,10 +71,8 @@ HEADERS += \
     abulletview.h \
     acharacterview.h \
     acollider.h \
-    acombatmanagermodel.h \
     acombatmanagerview.h \
     acontroller.h \
-    adamagedealermodel.h \
     amodel.h \
     aphysicalobjectmodel.h \
     aview.h \
@@ -99,11 +90,6 @@ HEADERS += \
     characterview3d.h \
     collider2dcircle.h \
     collider2dsquare.h \
-    collider3dbox.h \
-    collider3dsphere.h \
-    shootingabilitycontroller.h \
-    shootingabilitymodel.h \
-    shootingabilityview.h \
     utils.h
 
 FORMS += \

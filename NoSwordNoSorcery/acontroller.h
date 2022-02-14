@@ -9,6 +9,7 @@ public:
     AView * View;
     AModel* Model;
     AController();
+    virtual ~AController();
 
     virtual void UpdateGameStates(void);
     virtual void Render(void);

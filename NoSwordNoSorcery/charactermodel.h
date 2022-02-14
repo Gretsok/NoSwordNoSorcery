@@ -1,7 +1,6 @@
 #ifndef CHARACTERMODEL_H
 #define CHARACTERMODEL_H
 
-#include "acombatmanagermodel.h"
 #include "aphysicalobjectmodel.h"
 #include <QVector2D>
 

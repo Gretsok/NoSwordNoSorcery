@@ -8,11 +8,12 @@ class DungeonView3D : public ADungeonView
 {
 public:
     DungeonView3D();
-    void Render(void);
-    void DrawTopDoor();
-    void DrawBottomDoor();
-    void DrawLeftDoor();
-    void DrawRightDoor();
+    virtual ~DungeonView3D();
+    virtual void Render(void);
+    virtual void DrawTopDoor();
+    virtual void DrawBottomDoor();
+    virtual void DrawLeftDoor();
+    virtual void DrawRightDoor();
     QVector3D GetBottomDoorEntrancePosition();
     QVector3D GetTopDoorEntrancePosition();
     QVector3D GetLeftDoorEntrancePosition();

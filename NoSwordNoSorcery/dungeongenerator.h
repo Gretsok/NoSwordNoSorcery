@@ -12,6 +12,7 @@ class DungeonGenerator
 {
 public:
     DungeonGenerator();
+    virtual ~DungeonGenerator();
     int dungeonLayout [5][5] = {{0}};
     int startRoomX;
     int startRoomY;

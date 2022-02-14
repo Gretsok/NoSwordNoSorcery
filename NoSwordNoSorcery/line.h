@@ -8,6 +8,7 @@ class OrientedLine
 public:
     OrientedLine();
     OrientedLine(QVector3D a_origin, QVector3D a_destination);
+    virtual ~OrientedLine();
     QVector3D GetOrigin();
     QVector3D GetDestination();
     QVector3D GetVector();

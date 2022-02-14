@@ -7,7 +7,8 @@ class ACombatManagerView : public AView
 {
 public:
     ACombatManagerView();
-    void Render(void);
+    virtual ~ACombatManagerView();
+
 };
 
 #endif // ACOMBATMANAGERVIEW_H

@@ -72,6 +72,7 @@ ACollider::ACollider(QVector3D a_center)
 
 ACollider::~ACollider()
 {
+
 }
 
 void ACollider::OnMove(QVector3D a_deltaToNewOrigin)

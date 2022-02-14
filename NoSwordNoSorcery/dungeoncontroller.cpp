@@ -12,7 +12,7 @@ DungeonController::DungeonController(){
 
 DungeonController::DungeonController(CharacterController* character_controller)
 {
-    this->View = new DungeonView3D();
+    this->View = new DungeonView2D();
     this->Viewis3D = false;
     this->Model = new DungeonModel(this);
     this->m_characterController = character_controller;

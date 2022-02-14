@@ -17,9 +17,9 @@ ColliderController::ColliderController(ACollider* a_colliderToUse)
 
 ColliderController::~ColliderController()
 {
-    delete this->View;
-    delete this->Model;
+    qDebug() << "about to be remove from this list";
     ColliderController::m_colliderControllers.remove(this);
+    qDebug() << "Removed from this list";
 }
 
 void ColliderController::ChangeCollider(ACollider *a_colliderToUse)

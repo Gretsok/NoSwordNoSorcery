@@ -10,7 +10,7 @@ class ColliderView : public AView
 {
 public:
     ColliderView();
-    ~ColliderView();
+    virtual ~ColliderView();
     void SetIntersectorsToDraw(std::list<OrientedLine> a_intersectors);
     virtual void Render(void);
 

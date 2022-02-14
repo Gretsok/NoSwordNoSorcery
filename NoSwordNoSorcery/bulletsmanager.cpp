@@ -40,6 +40,7 @@ void BulletsManager::DestroyBullet(BulletController* a_bulletToDestroy)
     {
         if((*vIt) == a_bulletToDestroy)
         {
+            qDebug() << "bullet found in list";
             BulletsManager::s_bullets.remove(a_bulletToDestroy);
             delete a_bulletToDestroy;
         }

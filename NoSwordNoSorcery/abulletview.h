@@ -9,6 +9,7 @@ class ABulletView : public AView
 {
 public:
     ABulletView();
+    virtual ~ABulletView();
     void SetGamePositions(QVector3D a_gamePositions);
 protected:
     QVector3D m_gamePositions;

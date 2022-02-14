@@ -89,6 +89,11 @@ CharacterView3D::CharacterView3D()
     //glFlush();
 }
 
+CharacterView3D::~CharacterView3D()
+{
+}
+
+
 void CharacterView3D::Render(void){
     glBegin(GL_QUADS);
         glColor3f(1.f, 0.f,0.f);
