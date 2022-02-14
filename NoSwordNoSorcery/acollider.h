@@ -19,6 +19,7 @@ public:
     void OnMove(QVector3D a_newOrigin);
     virtual Collision IsCollidingWithMe(QVector3D a_intersectorOrigin, QVector3D a_intersectorVector);
     QVector3D GetOrigin();
+    void SetOrigin(float,float,float);
     virtual std::list<OrientedLine> Debug_GetLines();
     void AddCollisionObserver(ACollisionObserver* a_collisionObserver);
     void RemoveCollisionObserver(ACollisionObserver* a_collisionObserver);

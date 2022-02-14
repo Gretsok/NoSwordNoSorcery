@@ -13,6 +13,7 @@ public:
     void ApplyAcceleration(QVector3D a_accelerationToAdd);
     virtual QVector3D GetPositions();
     virtual void HandleCollision(Collision);
+    void SetPositions(float x,float y,float z);
 protected:
     ColliderController* m_2DCollider;
     QVector3D m_currentMovement;

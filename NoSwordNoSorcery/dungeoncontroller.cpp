@@ -1,16 +1,26 @@
 #include "dungeoncontroller.h"
 #include "iostream"
 #include <QDebug>
+#include "dungeonmodel.h"
 
 
 DungeonController::DungeonController(){
     this->View = new DungeonView2D();
     this->Viewis3D = false;
-    this->Model = new DungeonModel();
+    this->Model = new DungeonModel(this);
+}
+
+DungeonController::DungeonController(CharacterController* character_controller)
+{
+    this->View = new DungeonView2D();
+    this->Viewis3D = false;
+    this->Model = new DungeonModel(this);
+    this->m_characterController = character_controller;
 }
 
 DungeonController::~DungeonController(){
-
+    delete this->Model;
+    delete this->View;
 }
 
 void DungeonController::OnViewSwitched(){
@@ -51,4 +61,10 @@ void DungeonController::Render(void){
             ((ADungeonView *)this->View)->DrawBottomDoor();
         }
     }
+}
+
+void DungeonController::MoveRoom(short i)
+{
+    qDebug() << "controller sait que MoveRoom";
+    this->m_characterController->OnRoomChange(i);
 }

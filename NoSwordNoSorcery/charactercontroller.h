@@ -14,6 +14,7 @@ public:
     virtual ~CharacterController();
     virtual void OnViewSwitched();
     virtual void UpdateGameStates(void);
+    void OnRoomChange(short);
 };
 
 #endif // CHARACTERCONTROLLER_H

@@ -90,6 +90,13 @@ QVector3D ACollider::GetOrigin()
     return this->m_origin;
 }
 
+void ACollider::SetOrigin(float x,float y,float z)
+{
+    this->m_origin.setX(x);
+    this->m_origin.setY(y);
+    this->m_origin.setZ(z);
+}
+
 void ACollider::AddCollisionObserver(ACollisionObserver* a_collisionObserver)
 {
     this->m_collisionObservers.push_back(a_collisionObserver);
