@@ -54,7 +54,8 @@ SOURCES += \
     mainwindow.cpp \
     shootingabilitycontroller.cpp \
     shootingabilitymodel.cpp \
-    shootingabilityview.cpp
+    shootingabilityview.cpp \
+    utils.cpp
 
 HEADERS += \
     acollisionobserver.h \
@@ -100,7 +101,8 @@ HEADERS += \
     collider3dsphere.h \
     shootingabilitycontroller.h \
     shootingabilitymodel.h \
-    shootingabilityview.h
+    shootingabilityview.h \
+    utils.h
 
 FORMS += \
     mainwindow.ui

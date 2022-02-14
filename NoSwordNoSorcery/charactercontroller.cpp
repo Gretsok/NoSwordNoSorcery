@@ -2,7 +2,7 @@
 #include<QDebug>
 
 CharacterController::CharacterController(){
-    this->View = new CharacterView2D();
+    this->View = new CharacterView3D();
     this->Model = new CharacterModel();
 }
 
