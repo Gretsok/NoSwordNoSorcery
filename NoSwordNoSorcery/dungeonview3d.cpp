@@ -272,3 +272,24 @@ void DungeonView3D::DrawRightDoor(){
         sommetT(0.001);
     glEnd();
 }
+
+QVector3D DungeonView3D::GetBottomDoorEntrancePosition()
+{
+    //NOT IMPLEMENTED
+    return QVector3D(0,0,0);
+}
+QVector3D DungeonView3D::GetTopDoorEntrancePosition()
+{
+    //NOT IMPLEMENTED
+    return QVector3D(0,0,0);
+}
+QVector3D DungeonView3D::GetRightDoorEntrancePosition()
+{
+    //NOT IMPLEMENTED
+    return QVector3D(0,0,0);
+}
+QVector3D DungeonView3D::GetLeftDoorEntrancePosition()
+{
+    //NOT IMPLEMENTED
+    return QVector3D(0,0,0);
+}

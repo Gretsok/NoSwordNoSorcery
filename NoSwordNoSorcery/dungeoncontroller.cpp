@@ -66,5 +66,20 @@ void DungeonController::Render(void){
 void DungeonController::MoveRoom(short i)
 {
     qDebug() << "controller sait que MoveRoom";
-    this->m_characterController->OnRoomChange(i);
+    switch(i){
+    case 0:
+        this->m_characterController->OnRoomChange(((ADungeonView*)this->View)->GetBottomDoorEntrancePosition());
+        break;
+    case 1:
+        this->m_characterController->OnRoomChange(((ADungeonView*)this->View)->GetTopDoorEntrancePosition());
+        break;
+    case 2:
+        this->m_characterController->OnRoomChange(((ADungeonView*)this->View)->GetRightDoorEntrancePosition());
+        break;
+    case 3:
+        this->m_characterController->OnRoomChange(((ADungeonView*)this->View)->GetLeftDoorEntrancePosition());
+        break;
+    }
+
+
 }

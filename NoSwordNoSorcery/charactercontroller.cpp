@@ -29,24 +29,25 @@ void CharacterController::UpdateGameStates(void)
     ((ACharacterView*) this->View)->SetGamePositions(((CharacterModel*) this->Model)->GetPositions());
 }
 
-void CharacterController::OnRoomChange(short pos)
+void CharacterController::OnRoomChange(QVector3D newCharacterPosition)
 {
-    switch(pos){
+    ((CharacterModel*)this->Model)->SetPositions(newCharacterPosition);
+    /*switch(pos){
         case 0:
-            ((CharacterModel*) this->Model)->SetPositions(0.f,-3.f,0.f);
+            ((CharacterModel*) this->Model)->SetPositions(QVector3D(0.f,-3.f,0.f));
             break;
         case 1:
-            ((CharacterModel*) this->Model)->SetPositions(0.f,3.f,0.f);
+            ((CharacterModel*) this->Model)->SetPositions(QVector3D(0.f,3.f,0.f));
             break;
         case 2:
-            ((CharacterModel*) this->Model)->SetPositions(3.f,0.f,0.f);
+            ((CharacterModel*) this->Model)->SetPositions(QVector3D(3.f,0.f,0.f));
             break;
         case 3:
-            ((CharacterModel*) this->Model)->SetPositions(-3.f,0.f,0.f);
+            ((CharacterModel*) this->Model)->SetPositions(QVector3D(-3.f,0.f,0.f));
             break;
         default:
             break;
-    }
+    }*/
 
 
 }

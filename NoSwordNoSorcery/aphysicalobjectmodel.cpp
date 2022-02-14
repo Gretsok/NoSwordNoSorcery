@@ -40,9 +40,9 @@ QVector3D APhysicalObjectModel::GetPositions()
     return ((ACollider*) this->m_2DCollider->Model)->GetOrigin();
 }
 
-void APhysicalObjectModel::SetPositions(float x,float y, float z)
+void APhysicalObjectModel::SetPositions(QVector3D vector)
 {
-    ((ACollider*) this->m_2DCollider->Model)->SetOrigin(x,y,z);
+    ((ACollider*) this->m_2DCollider->Model)->SetOrigin(vector);
 }
 
 void APhysicalObjectModel::HandleCollision(Collision a_collision)
