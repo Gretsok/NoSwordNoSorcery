@@ -6,9 +6,10 @@ Collider2DSquare::Collider2DSquare() : ACollider {}
     this->m_cornerLocalPoint = QVector3D(0,0,0);
 }
 
-Collider2DSquare::Collider2DSquare(QVector3D a_center, QVector3D a_cornerLocalPoint) : ACollider {a_center}
+Collider2DSquare::Collider2DSquare(QVector3D a_center, QVector3D a_cornerLocalPoint, bool a_isTrigger) : ACollider {a_center}
 {
     this->m_cornerLocalPoint = a_cornerLocalPoint;
+    this->m_isTrigger = a_isTrigger;
 }
 
 Collision Collider2DSquare::IsCollidingWithMe(QVector3D a_intersectorOrigin, QVector3D a_intersectorVector)
@@ -30,6 +31,7 @@ Collision Collider2DSquare::IsCollidingWithMe(QVector3D a_intersectorOrigin, QVe
             }*/
             collision = Collision(QVector3D::crossProduct(QVector3D(0,0,1), (*it).GetVector()));
             collision.HasCollision = true;
+            collision.IsTrigger = this->IsTrigger();
             return collision;
         }
     }

@@ -12,6 +12,7 @@ CONFIG += c++11
 SOURCES += \
     acollisionobserver.cpp \
     adungeonview.cpp \
+    bulletsmanager.cpp \
     collidercontroller.cpp \
     colliderview.cpp \
     dungeoncontroller.cpp \
@@ -59,6 +60,7 @@ SOURCES += \
 HEADERS += \
     acollisionobserver.h \
     adungeonview.h \
+    bulletsmanager.h \
     collidercontroller.h \
     colliderview.h \
     dungeoncontroller.h \

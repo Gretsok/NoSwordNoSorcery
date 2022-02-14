@@ -14,7 +14,11 @@ public:
     virtual ~CharacterController();
     virtual void OnViewSwitched();
     virtual void UpdateGameStates(void);
+    virtual void Render(void);
     void OnRoomChange(QVector3D);
+private:
+    float m_shootingCooldown;
+    float m_timeSinceLastShot;
 };
 
 #endif // CHARACTERCONTROLLER_H

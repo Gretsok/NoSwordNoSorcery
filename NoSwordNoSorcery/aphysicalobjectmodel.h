@@ -11,7 +11,9 @@ public:
     APhysicalObjectModel();
     virtual ~APhysicalObjectModel();
     void ApplyAcceleration(QVector3D a_accelerationToAdd);
+    void SetAcceleration(QVector3D a_acceleration);
     virtual QVector3D GetPositions();
+    QVector3D GetDirection();
     virtual void HandleCollision(Collision);
     void SetPositions(QVector3D);
 protected:

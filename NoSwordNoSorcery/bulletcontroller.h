@@ -9,6 +9,9 @@ class BulletController : public AController
 {
 public:
     BulletController();
+    virtual ~BulletController();
+    virtual void OnViewSwitched();
+    virtual void UpdateGameStates(void);
 };
 
 #endif // BULLETCONTROLLER_H
