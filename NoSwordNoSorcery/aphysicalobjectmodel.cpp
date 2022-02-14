@@ -42,6 +42,11 @@ QVector3D APhysicalObjectModel::GetPositions()
     return ((ACollider*) this->m_2DCollider->Model)->GetOrigin();
 }
 
+void APhysicalObjectModel::SetPositions(QVector3D vector)
+{
+    ((ACollider*) this->m_2DCollider->Model)->SetOrigin(vector);
+}
+
 void APhysicalObjectModel::HandleCollision(Collision a_collision)
 {
     float theta = acos(QVector3D::dotProduct(-(this->m_currentMovement), a_collision.GetNormal()) /

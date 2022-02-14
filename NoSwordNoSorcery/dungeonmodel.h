@@ -5,7 +5,7 @@
 #include "collidercontroller.h"
 #include "dungeongenerator.h"
 #include "acollisionobserver.h"
-
+#include "dungeoncontroller.h"
 
 
 
@@ -13,8 +13,10 @@ class DungeonModel : public AModel, ACollisionObserver
 {
 public:
     DungeonModel();
+    DungeonModel(DungeonController*);
     ~DungeonModel();
     DungeonGenerator dungeonGenerator;
+    DungeonController* dungeonController;
     int xRoomIndex = dungeonGenerator.startRoomX;
     int yRoomIndex = dungeonGenerator.startRoomY;
     bool TopDoor(void);
@@ -26,17 +28,13 @@ public:
     void MoveTopRoom(void);
     void MoveBottomRoom(void);
     void ClearRoomColliders(void);
-    void MoveRoom(void);
+    void MoveRoom(short);
     virtual void HandleCollision(Collision);
     void HandleTopDoorCollision(Collision);
     void HandleBottomDoorCollision(Collision);
     void HandleLeftDoorCollision(Collision);
     void HandleRightDoorCollision(Collision);
 protected:
-    /*ColliderController* m_topCollider;
-    ColliderController* m_rightCollider;
-    ColliderController* m_botCollider;
-    ColliderController* m_leftCollider;*/
     ColliderController* m_wallsCollider;
     ColliderController* m_topDoorCollider;
     ColliderController* m_bottomDoorCollider;

@@ -16,6 +16,17 @@ DungeonModel::DungeonModel()
     ((ACollider*)this->m_wallsCollider->Model)->AddCollisionObserver(this);
 }
 
+DungeonModel::DungeonModel(DungeonController* controller)
+{
+    this->dungeonController = controller;
+    this->m_topDoorCollisionObserver = new TopDoorCollisionObserver(this);
+    this->m_bottomDoorCollisionObserver = new BottomDoorCollisionObserver(this);
+    this->m_leftDoorCollisionObserver = new LeftDoorCollisionObserver(this);
+    this->m_rightDoorCollisionObserver = new RightDoorCollisionObserver(this);
+    this->switch_to_2D();
+    ((ACollider*)this->m_wallsCollider->Model)->AddCollisionObserver(this);
+}
+
 DungeonModel::~DungeonModel()
 {
     ((ACollider*)this->m_wallsCollider->Model)->RemoveCollisionObserver(this);
@@ -118,22 +129,22 @@ bool DungeonModel::RightDoor(){
 void DungeonModel::MoveRightRoom(){
     this->ClearRoomColliders();
     this->yRoomIndex = this->yRoomIndex+1;
-    this->MoveRoom();
+    this->MoveRoom(3);
 }
 void DungeonModel::MoveLeftRoom(){
     this->ClearRoomColliders();
     this->yRoomIndex = this->yRoomIndex-1;
-    this->MoveRoom();
+    this->MoveRoom(2);
 }
 void DungeonModel::MoveTopRoom(){
     this->ClearRoomColliders();
     this->xRoomIndex = this->xRoomIndex-1;
-    this->MoveRoom();
+    this->MoveRoom(0);
 }
 void DungeonModel::MoveBottomRoom(){
     this->ClearRoomColliders();
     this->xRoomIndex = this->xRoomIndex+1;
-    this->MoveRoom();
+    this->MoveRoom(1);
 }
 
 void DungeonModel::ClearRoomColliders(){
@@ -158,7 +169,7 @@ void DungeonModel::ClearRoomColliders(){
     //delete this->m_rightDoorCollider;
 }
 
-void DungeonModel::MoveRoom(){
+void DungeonModel::MoveRoom(short i){
     if(this->TopDoor()){
         this->m_topDoorCollider = new ColliderController(new Collider2DSquare(QVector3D(0,4,0),QVector3D(0.5,0.5,0)));
         ((ACollider*)this->m_topDoorCollider->Model)->AddCollisionObserver(m_topDoorCollisionObserver);
@@ -175,6 +186,8 @@ void DungeonModel::MoveRoom(){
         this->m_rightDoorCollider = new ColliderController(new Collider2DSquare(QVector3D(4,0,0),QVector3D(0.5,0.5,0)));
         ((ACollider*)this->m_rightDoorCollider->Model)->AddCollisionObserver(m_rightDoorCollisionObserver);
     }
+    this->dungeonController->MoveRoom(i);
+
 
 }
 

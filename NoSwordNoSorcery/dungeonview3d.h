@@ -13,6 +13,10 @@ public:
     void DrawBottomDoor();
     void DrawLeftDoor();
     void DrawRightDoor();
+    QVector3D GetBottomDoorEntrancePosition();
+    QVector3D GetTopDoorEntrancePosition();
+    QVector3D GetLeftDoorEntrancePosition();
+    QVector3D GetRightDoorEntrancePosition();
 };
 
 #endif // DUNGEONVIEW3D_H
