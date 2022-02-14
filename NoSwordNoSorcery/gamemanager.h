@@ -12,6 +12,7 @@ public:
     ~GameManager();
     void Update();
     static double GetDeltaTime();
+
 private:
     bool m_displayColliders;
     static double s_deltaTime;

@@ -10,6 +10,7 @@ public:
     Collision(QVector3D a_normal);
     QVector3D GetNormal();
     bool HasCollision = false;
+    bool IsTrigger = false;
 private:
     QVector3D m_normal;
 };

@@ -3,7 +3,6 @@
 
 #include "acombatmanagermodel.h"
 #include "aphysicalobjectmodel.h"
-#include "collider2dsquare.h"
 #include <QVector2D>
 
 class CharacterModel : public APhysicalObjectModel

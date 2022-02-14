@@ -1,6 +1,7 @@
 #include "acharacterview.h"
 #include "windows.h"
 #include "charactermodel.h"
+#include "bulletsmanager.h"
 
 ACharacterView::ACharacterView()
 {
@@ -34,6 +35,11 @@ QVector2D ACharacterView::GetInputs() const
     }
 
     return inputs;
+}
+
+bool ACharacterView::IsShooting() const
+{
+    return GetKeyState('E') < 0;
 }
 
 void ACharacterView::SetGamePositions(QVector3D a_gamePositions)

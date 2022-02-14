@@ -109,6 +109,11 @@ void ACollider::RemoveCollisionObserver(ACollisionObserver* a_collisionObserver)
    //qDebug()<< "just removed a new collision observer" << this->m_collisionObservers.size();
 }
 
+bool ACollider::IsTrigger()
+{
+    return this->m_isTrigger;
+}
+
 std::list<OrientedLine> ACollider::Debug_GetLines()
 {
     return this->get_intersectors();

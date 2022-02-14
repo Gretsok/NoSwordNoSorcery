@@ -7,7 +7,7 @@ class Collider2DCircle : public ACollider
 {
 public:
     Collider2DCircle();
-    Collider2DCircle(QVector3D a_center, float a_radius);
+    Collider2DCircle(QVector3D a_center, float a_radius, bool a_isTrigger = false);
     Collision IsCollidingWithMe(QVector3D a_intersectorOrigin, QVector3D a_intersectorVector);
 
 protected:
