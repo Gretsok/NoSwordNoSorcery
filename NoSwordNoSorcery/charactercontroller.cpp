@@ -4,7 +4,7 @@
 #include<QDebug>
 
 CharacterController::CharacterController(){
-    this->View = new CharacterView2D();
+    this->View = new CharacterView3D();
     this->Model = new CharacterModel();
     this->m_timeSinceLastShot = 0.f;
     this->m_shootingCooldown = 0.5f;
