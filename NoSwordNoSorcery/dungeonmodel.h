@@ -44,11 +44,8 @@ protected:
     ACollisionObserver* m_bottomDoorCollisionObserver;
     ACollisionObserver* m_leftDoorCollisionObserver;
     ACollisionObserver* m_rightDoorCollisionObserver;
-    void SwitchView(bool a_to3D);
-
 private:
-    void switch_to_2D();
-    void switch_to_3D();
+    void generate_door_colliders();
 };
 
 class TopDoorCollisionObserver : public ACollisionObserver

@@ -4,15 +4,12 @@
 
 DungeonModel::DungeonModel()
 {
-    /*this->m_topCollider = NULL;
-    this->m_rightCollider = NULL;
-    this->m_botCollider = NULL
-    this->m_leftCollider = ne*/
     this->m_topDoorCollisionObserver = new TopDoorCollisionObserver(this);
     this->m_bottomDoorCollisionObserver = new BottomDoorCollisionObserver(this);
     this->m_leftDoorCollisionObserver = new LeftDoorCollisionObserver(this);
     this->m_rightDoorCollisionObserver = new RightDoorCollisionObserver(this);
-    this->switch_to_2D();
+    this->m_wallsCollider = new ColliderController(new Collider2DSquare(QVector3D(0,0,0), QVector3D(4,4,0)));
+    this->generate_door_colliders();
     ((ACollider*)this->m_wallsCollider->Model)->AddCollisionObserver(this);
 }
 
@@ -23,7 +20,8 @@ DungeonModel::DungeonModel(DungeonController* controller)
     this->m_bottomDoorCollisionObserver = new BottomDoorCollisionObserver(this);
     this->m_leftDoorCollisionObserver = new LeftDoorCollisionObserver(this);
     this->m_rightDoorCollisionObserver = new RightDoorCollisionObserver(this);
-    this->switch_to_2D();
+    this->m_wallsCollider = new ColliderController(new Collider2DSquare(QVector3D(0,0,0), QVector3D(4,4,0)));
+    this->generate_door_colliders();
     ((ACollider*)this->m_wallsCollider->Model)->AddCollisionObserver(this);
 }
 
@@ -41,64 +39,28 @@ DungeonModel::~DungeonModel()
     delete this->m_wallsCollider;
     delete this->m_topDoorCollider;
     delete this->m_bottomDoorCollider;
+    delete this->m_leftDoorCollider;
+    delete this->m_rightDoorCollider;
 }
 
-void DungeonModel::SwitchView(bool a_to3D)
+void DungeonModel::generate_door_colliders()
 {
-    if(a_to3D)
-    {
-
-        /*delete this->m_topCollider;
-        delete this->m_rightCollider;
-        delete this->m_botCollider ;
-        delete this->m_leftCollider ;*/
-        delete this->m_wallsCollider;
-        delete this->m_topDoorCollider;
-        delete this->m_bottomDoorCollider;
-        delete this->m_leftDoorCollider;
-        delete this->m_rightDoorCollider;
-        this->switch_to_3D();
-    }
-    else
-    {
-        /*
-        delete this->m_topCollider;
-        delete this->m_rightCollider;
-        delete this->m_botCollider ;
-        delete this->m_leftCollider ;*/
-        delete this->m_wallsCollider;
-        delete this->m_topDoorCollider;
-        delete this->m_bottomDoorCollider;
-        delete this->m_leftDoorCollider;
-        delete this->m_rightDoorCollider;
-        this->switch_to_2D();
-    }
-}
-
-void DungeonModel::switch_to_2D()
-{
-    this->m_wallsCollider = new ColliderController(new Collider2DSquare(QVector3D(0,0,0), QVector3D(4,4,0)));
     if(this->TopDoor()){
-        this->m_topDoorCollider = new ColliderController(new Collider2DSquare(QVector3D(0,4,0),QVector3D(0.5,0.5,0), true));
+        this->m_topDoorCollider = new ColliderController(new Collider2DSquare(QVector3D(0,4.2,0),QVector3D(0.5,0.5,0), true));
         ((ACollider*)this->m_topDoorCollider->Model)->AddCollisionObserver(m_topDoorCollisionObserver);
     }
     if(this->BottomDoor()){
-        this->m_bottomDoorCollider = new ColliderController(new Collider2DSquare(QVector3D(0,-4,0),QVector3D(0.5,0.5,0), true));
+        this->m_bottomDoorCollider = new ColliderController(new Collider2DSquare(QVector3D(0,-4.2,0),QVector3D(0.5,0.5,0), true));
         ((ACollider*)this->m_bottomDoorCollider->Model)->AddCollisionObserver(m_bottomDoorCollisionObserver);
     }
     if(this->LeftDoor()){
-        this->m_leftDoorCollider = new ColliderController(new Collider2DSquare(QVector3D(-4,0,0),QVector3D(0.5,0.5,0), true));
+        this->m_leftDoorCollider = new ColliderController(new Collider2DSquare(QVector3D(-4.2,0,0),QVector3D(0.5,0.5,0), true));
         ((ACollider*)this->m_leftDoorCollider->Model)->AddCollisionObserver(m_leftDoorCollisionObserver);
     }
     if(this->RightDoor()){
-        this->m_rightDoorCollider = new ColliderController(new Collider2DSquare(QVector3D(4,0,0),QVector3D(0.5,0.5,0), true));
+        this->m_rightDoorCollider = new ColliderController(new Collider2DSquare(QVector3D(4.2,0,0),QVector3D(0.5,0.5,0), true));
         ((ACollider*)this->m_rightDoorCollider->Model)->AddCollisionObserver(m_rightDoorCollisionObserver);
     }
-
-}
-void DungeonModel::switch_to_3D()
-{
-    qCritical() << "Implement dungeon walls 3D collider";
 }
 
 bool DungeonModel::TopDoor(){
@@ -164,36 +126,16 @@ void DungeonModel::ClearRoomColliders(){
         ((ACollider*)this->m_rightDoorCollider->Model)->RemoveCollisionObserver(m_rightDoorCollisionObserver);
         delete this->m_rightDoorCollider;
     }
+}
 
-    //delete this->m_leftDoorCollider;
-    //delete this->m_rightDoorCollider;
+void DungeonModel::HandleCollision(Collision)
+{
+
 }
 
 void DungeonModel::MoveRoom(short i){
-    if(this->TopDoor()){
-        this->m_topDoorCollider = new ColliderController(new Collider2DSquare(QVector3D(0,4,0),QVector3D(0.5,0.5,0), true));
-        ((ACollider*)this->m_topDoorCollider->Model)->AddCollisionObserver(m_topDoorCollisionObserver);
-    }
-    if(this->BottomDoor()){
-        this->m_bottomDoorCollider = new ColliderController(new Collider2DSquare(QVector3D(0,-4,0),QVector3D(0.5,0.5,0), true));
-        ((ACollider*)this->m_bottomDoorCollider->Model)->AddCollisionObserver(m_bottomDoorCollisionObserver);
-    }
-    if(this->LeftDoor()){
-        this->m_leftDoorCollider = new ColliderController(new Collider2DSquare(QVector3D(-4,0,0),QVector3D(0.5,0.5,0), true));
-        ((ACollider*)this->m_leftDoorCollider->Model)->AddCollisionObserver(m_leftDoorCollisionObserver);
-    }
-    if(this->RightDoor()){
-        this->m_rightDoorCollider = new ColliderController(new Collider2DSquare(QVector3D(4,0,0),QVector3D(0.5,0.5,0), true));
-        ((ACollider*)this->m_rightDoorCollider->Model)->AddCollisionObserver(m_rightDoorCollisionObserver);
-    }
+    this->generate_door_colliders();
     this->dungeonController->MoveRoom(i);
-
-
-}
-
-void DungeonModel::HandleCollision(Collision a_collision)
-{
-   qDebug()<< "Implement dungeon wall collide";
 }
 
 void DungeonModel::HandleTopDoorCollision(Collision a_collision)
