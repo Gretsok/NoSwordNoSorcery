@@ -5,9 +5,11 @@
 
 CharacterController::CharacterController(){
     this->View = new CharacterView3D();
+    this->Viewis3D = true;
     this->Model = new CharacterModel();
     this->m_timeSinceLastShot = 0.f;
     this->m_shootingCooldown = 0.5f;
+
 }
 
 CharacterController::~CharacterController(){
@@ -19,10 +21,12 @@ void CharacterController::OnViewSwitched()
     if(this->Viewis3D){
         delete this->View;
         this->View = new CharacterView2D();
+        this->Viewis3D = false;
     }
     else{
         delete this->View;
         this->View = new CharacterView3D();
+        this->Viewis3D = true;
     }
 }
 
@@ -55,22 +59,4 @@ void CharacterController::Render(void)
 void CharacterController::OnRoomChange(QVector3D newCharacterPosition)
 {
     ((CharacterModel*)this->Model)->SetPositions(newCharacterPosition);
-    /*switch(pos){
-        case 0:
-            ((CharacterModel*) this->Model)->SetPositions(QVector3D(0.f,-3.f,0.f));
-            break;
-        case 1:
-            ((CharacterModel*) this->Model)->SetPositions(QVector3D(0.f,3.f,0.f));
-            break;
-        case 2:
-            ((CharacterModel*) this->Model)->SetPositions(QVector3D(3.f,0.f,0.f));
-            break;
-        case 3:
-            ((CharacterModel*) this->Model)->SetPositions(QVector3D(-3.f,0.f,0.f));
-            break;
-        default:
-            break;
-    }*/
-
-
 }

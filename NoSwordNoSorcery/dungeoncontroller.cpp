@@ -5,15 +5,15 @@
 
 
 DungeonController::DungeonController(){
-    this->View = new DungeonView2D();
-    this->Viewis3D = false;
-    this->Model = new DungeonModel(this);
+    //this->View = new DungeonView2D();
+    //this->Viewis3D = false;
+    //this->Model = new DungeonModel(this);
 }
 
 DungeonController::DungeonController(CharacterController* character_controller)
 {
     this->View = new DungeonView3D();
-    this->Viewis3D = false;
+    this->Viewis3D = true;
     this->Model = new DungeonModel(this);
     this->m_characterController = character_controller;
 }
@@ -44,14 +44,14 @@ void DungeonController::Render(void){
     if(((DungeonModel *)this->Model)->LeftDoor()){
         ((ADungeonView *)this->View)->DrawLeftDoor();
     }
-    if(!Viewis3D){
+    //if(!Viewis3D){
         if(((DungeonModel *)this->Model)->RightDoor()){
             ((ADungeonView *)this->View)->DrawRightDoor();
         }
         if(((DungeonModel *)this->Model)->BottomDoor()){
             ((ADungeonView *)this->View)->DrawBottomDoor();
         }
-    }
+    //}
     AController::Render();
     if(Viewis3D){
         if(((DungeonModel *)this->Model)->RightDoor()){
@@ -65,7 +65,6 @@ void DungeonController::Render(void){
 
 void DungeonController::MoveRoom(short i)
 {
-    qDebug() << "controller sait que MoveRoom";
     switch(i){
     case 0:
         this->m_characterController->OnRoomChange(((ADungeonView*)this->View)->GetBottomDoorEntrancePosition());
