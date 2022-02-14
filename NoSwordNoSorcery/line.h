@@ -10,6 +10,7 @@ public:
     OrientedLine(QVector3D a_origin, QVector3D a_destination);
     QVector3D GetOrigin();
     QVector3D GetDestination();
+    QVector3D GetVector();
 protected:
     QVector3D m_origin;
     QVector3D m_destination;
