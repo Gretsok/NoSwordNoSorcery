@@ -1,7 +1,9 @@
 #include "aphysicalobjectmodel.h"
 #include "collider2dsquare.h"
 #include "gamemanager.h"
+#include <cmath>
 #include<QDebug>
+#include<QQuaternion>
 
 APhysicalObjectModel::APhysicalObjectModel()
 {
@@ -47,5 +49,20 @@ void APhysicalObjectModel::SetPositions(QVector3D vector)
 
 void APhysicalObjectModel::HandleCollision(Collision a_collision)
 {
-   //qDebug()<< "On est des boss";
+    float theta = acos(QVector3D::dotProduct(-(this->m_currentMovement), a_collision.GetNormal()) /
+                       (this->m_currentMovement.length() * a_collision.GetNormal().length()));
+
+    theta = (theta * 180.f) / 3.1415926f;
+
+    QVector3D normalToSign = QVector3D::crossProduct(-(this->m_currentMovement), a_collision.GetNormal());
+
+    if(normalToSign.z() < 0)
+    {
+        theta = -theta;
+    }
+
+    qDebug() << theta;
+    QQuaternion q = QQuaternion::fromEulerAngles(0.f, 0.f, 2 * theta);
+    QVector3D newDirection = q.rotatedVector(-(this->m_currentMovement));
+    this->m_currentMovement = newDirection;
 }

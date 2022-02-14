@@ -21,3 +21,8 @@ QVector3D OrientedLine::GetDestination()
 {
     return this->m_destination;
 }
+
+QVector3D OrientedLine::GetVector()
+{
+    return this->GetDestination() - this->GetOrigin();
+}

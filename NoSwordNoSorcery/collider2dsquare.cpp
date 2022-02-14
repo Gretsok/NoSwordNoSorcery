@@ -19,7 +19,16 @@ Collision Collider2DSquare::IsCollidingWithMe(QVector3D a_intersectorOrigin, QVe
     {
         if(ACollider::AreIntersected(a_intersectorOrigin, a_intersectorVector, (*it).GetOrigin(), ACollider::GetVectorFromTwoPoints((*it).GetOrigin(), (*it).GetDestination())))
         {
-            Collision collision = Collision(QVector3D::crossProduct(QVector3D(0,0,1), a_intersectorVector));
+            Collision collision;
+            /*if(this->is_in_square(a_intersectorOrigin))
+            {
+                collision = Collision(-QVector3D::crossProduct(QVector3D(0,0,1), (*it).GetVector()));
+            }
+            else
+            {
+                collision = Collision(QVector3D::crossProduct(QVector3D(0,0,1), (*it).GetVector()));
+            }*/
+            collision = Collision(QVector3D::crossProduct(QVector3D(0,0,1), (*it).GetVector()));
             collision.HasCollision = true;
             return collision;
         }
@@ -50,4 +59,7 @@ std::list<OrientedLine> Collider2DSquare::get_borders()
                 OrientedLine(corners[3],corners[0])
     };
 }
+
+
+
 

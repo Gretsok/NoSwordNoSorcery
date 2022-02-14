@@ -131,7 +131,7 @@ void ACollider::check_collisions()
 
                 if(collision.HasCollision)
                 {
-                    //notify_collision(collision);
+                    this->notify_collision(collision);
                     ((ACollider*)((*it)->Model))->notify_collision(collision);
                     return;
                 }
