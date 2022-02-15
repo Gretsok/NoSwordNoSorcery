@@ -28,8 +28,8 @@ void BulletsManager::CreateNewBullet(QVector3D a_position, QVector3D a_direction
 {
     BulletController* newBullet = new BulletController();
     BulletsManager::s_bullets.push_back(newBullet);
-    ((BulletModel*) newBullet->Model)->SetPositions(a_position);
-    ((BulletModel*) newBullet->Model)->SetAcceleration(a_direction * a_force);
+    newBullet->GetModel<BulletModel*>()->SetPositions(a_position);
+    newBullet->GetModel<BulletModel*>()->SetAcceleration(a_direction * a_force);
 }
 
 void BulletsManager::DestroyBullet(BulletController* a_bulletToDestroy)

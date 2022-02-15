@@ -12,13 +12,13 @@ APhysicalObjectModel::APhysicalObjectModel()
     this->m_deceleration = 3.f;
     this->m_maxSpeed = 5.f;
     this->m_speed = 0.f;
-    ((ACollider*)this->m_2DCollider->Model)->AddCollisionObserver(this);
+    this->m_2DCollider->GetModel<ACollider*>()->AddCollisionObserver(this);
    //qDebug()<< "Collision observer added";
 }
 
 APhysicalObjectModel::~APhysicalObjectModel()
 {
-    ((ACollider*)this->m_2DCollider->Model)->RemoveCollisionObserver(this);
+    this->m_2DCollider->GetModel<ACollider*>()->RemoveCollisionObserver(this);
     delete this->m_2DCollider;
 }
 
@@ -46,7 +46,7 @@ void APhysicalObjectModel::UpdateGameStates(void)
 
         SetPositions(pos);
     }
-    ((ACollider*) this->m_2DCollider->Model)->OnMove(m_currentMovement * this->m_speed * GameManager::GetDeltaTime());
+    this->m_2DCollider->GetModel<ACollider*>()->OnMove(m_currentMovement * this->m_speed * GameManager::GetDeltaTime());
     this->m_speed -= this->m_deceleration * GameManager::GetDeltaTime();
     if(this->m_speed < 0.f)
     {
@@ -57,12 +57,12 @@ void APhysicalObjectModel::UpdateGameStates(void)
 
 QVector3D APhysicalObjectModel::GetPositions()
 {
-    return ((ACollider*) this->m_2DCollider->Model)->GetOrigin();
+    return this->m_2DCollider->GetModel<ACollider*>()->GetOrigin();
 }
 
 void APhysicalObjectModel::SetPositions(QVector3D vector)
 {
-    ((ACollider*) this->m_2DCollider->Model)->SetOrigin(vector);
+    this->m_2DCollider->GetModel<ACollider*>()->SetOrigin(vector);
 }
 
 QVector3D APhysicalObjectModel::GetDirection()

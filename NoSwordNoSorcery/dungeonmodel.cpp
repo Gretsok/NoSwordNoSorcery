@@ -50,7 +50,7 @@ DungeonModel::DungeonModel()
     this->m_rightDoorCollisionObserver = new RightDoorCollisionObserver(this);
     this->m_wallsCollider = new ColliderController(new Collider2DSquare(QVector3D(0,0,0), QVector3D(4,4,0)));
     this->generate_door_colliders();
-    ((ACollider*)this->m_wallsCollider->Model)->AddCollisionObserver(this);
+    this->m_wallsCollider->GetModel<ACollider*>()->AddCollisionObserver(this);
 }
 
 void DungeonModel::generate_obstacles_colliders(){
@@ -61,7 +61,7 @@ void DungeonModel::generate_obstacles_colliders(){
         x = obstacles[i].xPosition;
         y = obstacles[i].yPosition;
         this->m_obstacles_colliders.push_back(new ColliderController(new Collider2DSquare(QVector3D(x,y,0), QVector3D(0.5,0.5,0))));
-        ((ACollider*)this->m_obstacles_colliders[i]->Model)->AddCollisionObserver(this);
+        this->m_obstacles_colliders[i]->GetModel<ACollider*>()->AddCollisionObserver(this);
     }
 }
 
@@ -74,7 +74,7 @@ DungeonModel::DungeonModel(DungeonController* controller)
     this->m_rightDoorCollisionObserver = new RightDoorCollisionObserver(this);
     this->m_wallsCollider = new ColliderController(new Collider2DSquare(QVector3D(0,0,0), QVector3D(4,4,0)));
     this->generate_door_colliders();
-    ((ACollider*)this->m_wallsCollider->Model)->AddCollisionObserver(this);
+    this->m_wallsCollider->GetModel<ACollider*>()->AddCollisionObserver(this);
 
     bool res = loadRoomsFromFile(this->rooms_with_obstacles);
     if(res){
@@ -85,15 +85,15 @@ DungeonModel::DungeonModel(DungeonController* controller)
 
 DungeonModel::~DungeonModel()
 {
-    ((ACollider*)this->m_wallsCollider->Model)->RemoveCollisionObserver(this);
+    this->m_wallsCollider->GetModel<ACollider*>()->RemoveCollisionObserver(this);
     if(this->TopDoor())
-        ((ACollider*)this->m_topDoorCollider->Model)->RemoveCollisionObserver(m_topDoorCollisionObserver);
+        this->m_topDoorCollider->GetModel<ACollider*>()->RemoveCollisionObserver(m_topDoorCollisionObserver);
     if(this->BottomDoor())
-        ((ACollider*)this->m_bottomDoorCollider->Model)->RemoveCollisionObserver(m_bottomDoorCollisionObserver);
+        this->m_bottomDoorCollider->GetModel<ACollider*>()->RemoveCollisionObserver(m_bottomDoorCollisionObserver);
     if(this->LeftDoor())
-        ((ACollider*)this->m_leftDoorCollider->Model)->RemoveCollisionObserver(m_leftDoorCollisionObserver);
+        this->m_leftDoorCollider->GetModel<ACollider*>()->RemoveCollisionObserver(m_leftDoorCollisionObserver);
     if(this->RightDoor())
-        ((ACollider*)this->m_rightDoorCollider->Model)->RemoveCollisionObserver(m_rightDoorCollisionObserver);
+        this->m_rightDoorCollider->GetModel<ACollider*>()->RemoveCollisionObserver(m_rightDoorCollisionObserver);
     delete this->m_wallsCollider;
     /*delete this->m_topDoorCollider;
     delete this->m_bottomDoorCollider;
@@ -105,19 +105,19 @@ void DungeonModel::generate_door_colliders()
 {
     if(this->TopDoor()){
         this->m_topDoorCollider = new ColliderController(new Collider2DSquare(QVector3D(0,4.2,0),QVector3D(0.5,0.5,0), true));
-        ((ACollider*)this->m_topDoorCollider->Model)->AddCollisionObserver(m_topDoorCollisionObserver);
+        this->m_topDoorCollider->GetModel<ACollider*>()->AddCollisionObserver(m_topDoorCollisionObserver);
     }
     if(this->BottomDoor()){
         this->m_bottomDoorCollider = new ColliderController(new Collider2DSquare(QVector3D(0,-4.2,0),QVector3D(0.5,0.5,0), true));
-        ((ACollider*)this->m_bottomDoorCollider->Model)->AddCollisionObserver(m_bottomDoorCollisionObserver);
+        this->m_bottomDoorCollider->GetModel<ACollider*>()->AddCollisionObserver(m_bottomDoorCollisionObserver);
     }
     if(this->LeftDoor()){
         this->m_leftDoorCollider = new ColliderController(new Collider2DSquare(QVector3D(-4.2,0,0),QVector3D(0.5,0.5,0), true));
-        ((ACollider*)this->m_leftDoorCollider->Model)->AddCollisionObserver(m_leftDoorCollisionObserver);
+        this->m_leftDoorCollider->GetModel<ACollider*>()->AddCollisionObserver(m_leftDoorCollisionObserver);
     }
     if(this->RightDoor()){
         this->m_rightDoorCollider = new ColliderController(new Collider2DSquare(QVector3D(4.2,0,0),QVector3D(0.5,0.5,0), true));
-        ((ACollider*)this->m_rightDoorCollider->Model)->AddCollisionObserver(m_rightDoorCollisionObserver);
+        this->m_rightDoorCollider->GetModel<ACollider*>()->AddCollisionObserver(m_rightDoorCollisionObserver);
     }
 }
 
@@ -173,23 +173,23 @@ void DungeonModel::MoveBottomRoom(){
 
 void DungeonModel::ClearRoomColliders(){
     if(this->TopDoor()){
-        ((ACollider*)this->m_topDoorCollider->Model)->RemoveCollisionObserver(m_topDoorCollisionObserver);
+        this->m_topDoorCollider->GetModel<ACollider*>()->RemoveCollisionObserver(m_topDoorCollisionObserver);
         delete this->m_topDoorCollider;
     }
     if(this->BottomDoor()){
-        ((ACollider*)this->m_bottomDoorCollider->Model)->RemoveCollisionObserver(m_bottomDoorCollisionObserver);
+        this->m_bottomDoorCollider->GetModel<ACollider*>()->RemoveCollisionObserver(m_bottomDoorCollisionObserver);
         delete this->m_bottomDoorCollider;
     }
     if(this->LeftDoor()){
-        ((ACollider*)this->m_leftDoorCollider->Model)->RemoveCollisionObserver(m_leftDoorCollisionObserver);
+        this->m_leftDoorCollider->GetModel<ACollider*>()->RemoveCollisionObserver(m_leftDoorCollisionObserver);
         delete this->m_leftDoorCollider;
     }
     if(this->RightDoor()){
-        ((ACollider*)this->m_rightDoorCollider->Model)->RemoveCollisionObserver(m_rightDoorCollisionObserver);
+        this->m_rightDoorCollider->GetModel<ACollider*>()->RemoveCollisionObserver(m_rightDoorCollisionObserver);
         delete this->m_rightDoorCollider;
     }
     for(unsigned long long i =0;i<this->m_obstacles_colliders.size();i++){
-        ((ACollider*)this->m_obstacles_colliders[i]->Model)->RemoveCollisionObserver(this);
+        this->m_obstacles_colliders[i]->GetModel<ACollider*>()->RemoveCollisionObserver(this);
         delete this->m_obstacles_colliders[i];
     }
     this->m_obstacles_colliders.clear();
