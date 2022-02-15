@@ -134,16 +134,16 @@ void ACollider::check_collisions()
         std::list<ColliderController*>::iterator it;
         for(it = ColliderController::GetColliderControllers().begin(); it != ColliderController::GetColliderControllers().end(); ++it)
         {
-            if((*it)->Model != this)
+            if((*it)->GetModel<ACollider*>() != this)
             {
-                Collision collision = ((ACollider*)((*it)->Model))->IsCollidingWithMe((*vIt).GetOrigin(),
+                Collision collision = (*it)->GetModel<ACollider*>()->IsCollidingWithMe((*vIt).GetOrigin(),
                                                                                    ACollider::GetVectorFromTwoPoints((*vIt).GetOrigin(), (*vIt).GetDestination()));
                 collision.IsCollidingColliderTrigger = this->m_isTrigger;
 
                 if(collision.HasCollision)
                 {
                     this->notify_collision(collision, true);
-                    ((ACollider*)((*it)->Model))->notify_collision(collision);
+                    (*it)->GetModel<ACollider*>()->notify_collision(collision);
                     return;
                 }
             }

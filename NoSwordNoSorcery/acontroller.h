@@ -6,14 +6,26 @@
 class AController
 {
 public:
-    AView * View;
-    AModel* Model;
     AController();
     virtual ~AController();
 
     virtual void UpdateGameStates(void);
     virtual void Render(void);
     virtual void OnViewSwitched() = 0;
+
+    template <class T> T GetView()
+    {
+        return (T) this->View;
+    }
+
+    template <class T> T GetModel()
+    {
+        return (T) this->Model;
+    }
+
+protected:
+    AView * View;
+    AModel* Model;
 };
 
 #endif // ACONTROLLER_H
