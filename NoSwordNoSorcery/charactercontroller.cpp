@@ -27,7 +27,7 @@ CharacterController::~CharacterController(){
 }
 
 void CharacterController::OnViewSwitched()
-{    //PENSER A DESTROY LES OBJETS
+{
     if(GameManager::IsView3D()){
         first.detach();
         delete this->View;
@@ -50,7 +50,6 @@ void CharacterController::UpdateGameStates(void)
     {
         if(this->m_timeSinceLastShot > this->m_shootingCooldown)
         {
-            qDebug() << "SHOOT";
             BulletsManager::CreateNewBullet(((CharacterModel*) this->Model)->GetPositions() + ((CharacterModel*) this->Model)->GetDirection() * 0.5f,
                                             ((CharacterModel*) this->Model)->GetDirection(),
                                             10.f);

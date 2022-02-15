@@ -20,22 +20,18 @@ void sommetA(float layer=0){
 void sommetB(float layer=0){
     QVector3D point = Convert2Dto3DPoint(QVector3D(-4,4,layer));
     glVertex3f(point.x(),point.y(),point.z());
-    //glVertex3f(-4,(((1.f/3.f)*4))-4,layer);
 }
 void sommetC(float layer=0){
     QVector3D point = Convert2Dto3DPoint(QVector3D(4,4,layer));
     glVertex3f(point.x(),point.y(),point.z());
-    //glVertex3f(0,(((2.f/3.f)*4))-4,layer);
 }
 void sommetD(float layer=0){
     QVector3D point = Convert2Dto3DPoint(QVector3D(4,-4,layer));
     glVertex3f(point.x(),point.y(),point.z());
-    //glVertex3f(4,(((1.f/3.f)*4)-4),layer);
 }
 void sommetE(float layer=0){
     QVector3D point = Convert2Dto3DPoint(QVector3D(-4,-4,layer));
     glVertex3f(point.x(),point.y()+wallHeight,point.z());
-    //glVertex3f(0,(((2.f/3.f)*4)-4),layer);
 }
 void sommetF(float layer=0){
     QVector3D point = Convert2Dto3DPoint(QVector3D(-4,4,layer));
@@ -45,12 +41,10 @@ void sommetF(float layer=0){
 void sommetG(float layer=0){
     QVector3D point = Convert2Dto3DPoint(QVector3D(4,4,layer));
     glVertex3f(point.x(),point.y()+wallHeight,point.z());
-    //glVertex3f(0,((1.f/3.f)*4),layer);
 }
 void sommetH(float layer=0){
     QVector3D point = Convert2Dto3DPoint(QVector3D(4,-4,layer));
     glVertex3f(point.x(),point.y()+wallHeight,point.z());
-    //glVertex3f(4,0,layer);
 }
 
 
@@ -58,44 +52,36 @@ void sommetH(float layer=0){
 void sommetI(float layer=0){
     QVector3D point = Convert2Dto3DPoint(QVector3D(-4,-0.5,layer));
     glVertex3f(point.x(),point.y(),point.z());
-    //glVertex3f(-(5.f/8.f)*4,-(1.f/3.f),layer);
 }
 void sommetJ(float layer=0){
     QVector3D point = Convert2Dto3DPoint(QVector3D(-4,0.5,layer));
     glVertex3f(point.x(),point.y(),point.z());
-    //glVertex3f(-(3.f/8.f)*4,0,layer);
 }
 void sommetK(float layer=0){
     QVector3D point = Convert2Dto3DPoint(QVector3D(-4,0.5,layer));
     glVertex3f(point.x(),point.y()+wallHeight/2,point.z());
-    //glVertex3f(-(3.f/8.f)*4,((((2.f/3.f)*4))-4)*(11.f/8.f),layer);
 }
 void sommetL(float layer=0){
     QVector3D point = Convert2Dto3DPoint(QVector3D(-4,-0.5,layer));
     glVertex3f(point.x(),point.y()+wallHeight/2,point.z());
-    //glVertex3f(-(5.f/8.f)*4,((((2.f/3.f)*4)-4)*(13.f/8.f)),layer);
 }
 
 
 void sommetM(float layer=0){
     QVector3D point = Convert2Dto3DPoint(QVector3D(-0.5,4,layer));
     glVertex3f(point.x(),point.y(),point.z());
-    //glVertex3f((3.f/8.f)*4,0,layer);
 }
 void sommetN(float layer=0){
     QVector3D point = Convert2Dto3DPoint(QVector3D(0.5,4,layer));
     glVertex3f(point.x(),point.y(),point.z());
-    //glVertex3f((5.f/8.f)*4,-(1.f/3.f),layer);
 }
 void sommetO(float layer=0){
     QVector3D point = Convert2Dto3DPoint(QVector3D(0.5,4,layer));
     glVertex3f(point.x(),point.y()+wallHeight/2,point.z());
-    //glVertex3f((5.f/8.f)*4,((((2.f/3.f)*4)-4)*(13.f/8.f)),layer);
 }
 void sommetP(float layer=0){
     QVector3D point = Convert2Dto3DPoint(QVector3D(-0.5,4,layer));
     glVertex3f(point.x(),point.y()+wallHeight/2,point.z());
-    //glVertex3f((3.f/8.f)*4,((((2.f/3.f)*4))-4)*(11.f/8.f),layer);
 }
 
 
@@ -536,17 +522,6 @@ void DungeonView3D::DrawObstacles(std::vector<ObstacleModel> obstacles){
     for(unsigned long long i = 0;i<obstacles.size();i++){
         x = obstacles[i].xPosition;
         y = obstacles[i].yPosition;
-        /*glBegin(GL_QUADS);
-            glColor3f(0.f,1.f,0.f);
-            point = Convert2Dto3DPoint(QVector3D(x-0.25,y-0.25,0));
-            glVertex3f(point.x(),point.y(),point.z());
-            point = Convert2Dto3DPoint(QVector3D(x-0.25,y+0.25,0));
-            glVertex3f(point.x(),point.y(),point.z());
-            point = Convert2Dto3DPoint(QVector3D(x+0.25,y+0.25,0));
-            glVertex3f(point.x(),point.y(),point.z());
-            point = Convert2Dto3DPoint(QVector3D(x+0.25,y-0.25,0));
-            glVertex3f(point.x(),point.y(),point.z());
-        glEnd();*/
         glBegin(GL_LINE_STRIP);
             glColor3f(0.f, 0.f,0.f);
             point3D = Convert2Dto3DPoint(QVector3D(x+0.25f,y+0.25f,0));

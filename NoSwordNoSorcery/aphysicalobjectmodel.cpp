@@ -13,7 +13,6 @@ APhysicalObjectModel::APhysicalObjectModel()
     this->m_maxSpeed = 5.f;
     this->m_speed = 0.f;
     this->m_2DCollider->GetModel<ACollider*>()->AddCollisionObserver(this);
-   //qDebug()<< "Collision observer added";
 }
 
 APhysicalObjectModel::~APhysicalObjectModel()

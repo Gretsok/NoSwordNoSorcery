@@ -5,12 +5,10 @@
 
 GameManager::GameManager()
 {
-   //qDebug()<< "Constructor GameManager";
     this->m_timeOfLastFrame = clock();
-   //qDebug()<< "DungeonController created";
     this->m_characterController = new CharacterController();
     this->m_dungeonController = new DungeonController(m_characterController);
-    this->m_displayColliders = true;
+    this->m_displayColliders = false;
     this->m_viewSwitchCooldown = 0.3;
     this->m_timeSinceLastViewSwitch = 0.3;
 }
@@ -42,7 +40,6 @@ void GameManager::Update()
     this->m_timeSinceLastViewSwitch += s_deltaTime;
     this->m_timeOfLastFrame = timeOfNow;
 
-    //qDebug() << " delta Time : " << GameManager::GetDeltaTime();
 }
 
 
@@ -64,14 +61,14 @@ void GameManager::update_game_states()
 
 void GameManager::render()
 {
-    /*if(this->m_displayColliders)
+    if(this->m_displayColliders)
     {
         std::list<ColliderController*>::iterator it;
         for(it = ColliderController::GetColliderControllers().begin(); it != ColliderController::GetColliderControllers().end(); ++it)
         {
             (*it)->Render();
         }
-    }*/
+    }
     this->m_characterController->Render();
     BulletsManager::Render();
     this->m_dungeonController->Render();

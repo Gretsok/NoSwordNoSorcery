@@ -18,10 +18,10 @@ public:
     DungeonController* dungeonController;
     int xRoomIndex = dungeonGenerator.startRoomX;
     int yRoomIndex = dungeonGenerator.startRoomY;
-    bool TopDoor(void);
-    bool BottomDoor(void);
-    bool LeftDoor(void);
-    bool RightDoor(void);
+    bool HasTopDoor(void);
+    bool HasBottomDoor(void);
+    bool HasLeftDoor(void);
+    bool HasRightDoor(void);
     bool IsFinalRoom(void);
     void MoveRightRoom(void);
     void MoveLeftRoom(void);

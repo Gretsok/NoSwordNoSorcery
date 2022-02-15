@@ -26,6 +26,7 @@ Collision Collider2DSquare::IsCollidingWithMe(QVector3D a_intersectorOrigin, QVe
         if(ACollider::AreIntersected(a_intersectorOrigin, a_intersectorVector, (*it).GetOrigin(), ACollider::GetVectorFromTwoPoints((*it).GetOrigin(), (*it).GetDestination())))
         {
             Collision collision;
+            //Tentative : savoir si on est au sein des murs pour avoir des normales correctement orientées
             /*if(this->is_in_square(a_intersectorOrigin))
             {
                 collision = Collision(-QVector3D::crossProduct(QVector3D(0,0,1), (*it).GetVector()));

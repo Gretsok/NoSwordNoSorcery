@@ -4,8 +4,7 @@
 
 ColliderController::ColliderController()
 {
-    ColliderController::m_colliderControllers.push_back(this);
-    this->View = new ColliderView();
+
 }
 
 ColliderController::ColliderController(ACollider* a_colliderToUse)
@@ -17,9 +16,7 @@ ColliderController::ColliderController(ACollider* a_colliderToUse)
 
 ColliderController::~ColliderController()
 {
-    qDebug() << "about to be remove from this list";
     ColliderController::m_colliderControllers.remove(this);
-    qDebug() << "Removed from this list";
 }
 
 void ColliderController::ChangeCollider(ACollider *a_colliderToUse)

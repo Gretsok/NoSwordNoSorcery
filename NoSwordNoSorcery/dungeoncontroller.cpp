@@ -6,9 +6,7 @@
 
 
 DungeonController::DungeonController(){
-    //this->View = new DungeonView2D();
-    //this->Viewis3D = false;
-    //this->Model = new DungeonModel(this);
+
 }
 
 DungeonController::DungeonController(CharacterController* character_controller)
@@ -24,12 +22,10 @@ DungeonController::DungeonController(CharacterController* character_controller)
 }
 
 DungeonController::~DungeonController(){
-    delete this->Model;
-    delete this->View;
+
 }
 
 void DungeonController::OnViewSwitched(){
-    //PENSER A DESTROY LES OBJETS
     if(GameManager::IsView3D()){
         delete this->View;
         this->View = new DungeonView3D();
@@ -41,33 +37,24 @@ void DungeonController::OnViewSwitched(){
 }
 
 void DungeonController::Render(void){
-    //Render obstacles
     ((ADungeonView *)this->View)->DrawObstacles(((DungeonModel *)this->Model)->GetObstaclesInRoom());
 
     if(((DungeonModel *)this->Model)->IsFinalRoom()){
         ((ADungeonView *)this->View)->DrawTreasure();
     }
-    if(((DungeonModel *)this->Model)->TopDoor()){
+    if(((DungeonModel *)this->Model)->HasTopDoor()){
         ((ADungeonView *)this->View)->DrawTopDoor();
     }
-    if(((DungeonModel *)this->Model)->LeftDoor()){
+    if(((DungeonModel *)this->Model)->HasLeftDoor()){
         ((ADungeonView *)this->View)->DrawLeftDoor();
     }
-    if(((DungeonModel *)this->Model)->RightDoor()){
+    if(((DungeonModel *)this->Model)->HasRightDoor()){
         ((ADungeonView *)this->View)->DrawRightDoor();
     }
-    if(((DungeonModel *)this->Model)->BottomDoor()){
+    if(((DungeonModel *)this->Model)->HasBottomDoor()){
         ((ADungeonView *)this->View)->DrawBottomDoor();
     }
     AController::Render();
-    /*if(GameManager::IsView3D()){
-        if(((DungeonModel *)this->Model)->RightDoor()){
-            ((ADungeonView *)this->View)->DrawRightDoor();
-        }
-        if(((DungeonModel *)this->Model)->BottomDoor()){
-            ((ADungeonView *)this->View)->DrawBottomDoor();
-        }
-    }*/
 }
 
 void DungeonController::MoveRoom(short i)

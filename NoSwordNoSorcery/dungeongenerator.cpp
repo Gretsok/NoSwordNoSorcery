@@ -7,9 +7,6 @@
 
 using namespace std;
 
-#define row 10
-#define col 10
-
 DungeonGenerator::DungeonGenerator()
 {
     srand(time(0));
@@ -30,21 +27,13 @@ DungeonGenerator::DungeonGenerator()
 
 
 
-    //PRINT TEMPORAIRE
+    //PRINT du layout du donjon dans le terminal
     for(int i = 0;i<5;i++){
         QDebug deb = qDebug();
         for(int j =0;j<5;j++){
             deb << dungeonLayout[i][j];
-            //printf("%d ",dungeonLayout[i][j]);
         }
-        //printf("\n");
     }
-    /*for(int i = 0;i<5;i++){
-        for(int j =0;j<5;j++){
-            printf("%d ",layout[i][j]);
-        }
-        printf("\n");
-    }*/
 
 }
 
@@ -80,9 +69,6 @@ void DungeonGenerator::FillCornerCells(){
     }
     switch(corner1){
         case 0:
-            //vec = layout[0];
-            //vec[0] = 1;
-            //layout[0] = vec;
             dungeonLayout[0][0] = 1;
             c1.x = 0;
             c1.y = 0;
@@ -90,9 +76,6 @@ void DungeonGenerator::FillCornerCells(){
             startRoomY = 0;
             break;
         case 1:
-            //vec = layout[0];
-            //vec[4] = 1;
-            //layout[0] = vec;
             dungeonLayout[0][4] = 1;
             c1.x = 0;
             c1.y = 4;
@@ -100,9 +83,6 @@ void DungeonGenerator::FillCornerCells(){
             startRoomY = 4;
             break;
         case 2:
-            //vec = layout[4];
-            //vec[0] = 1;
-            //layout[4] = vec;
             dungeonLayout[4][0] = 1;
             c1.x = 4;
             c1.y = 0;
@@ -110,9 +90,6 @@ void DungeonGenerator::FillCornerCells(){
             startRoomY = 0;
             break;
         case 3:
-            //vec = layout[4];
-            //vec[4] = 1;
-            //layout[4] = vec;
             dungeonLayout[4][4] = 1;
             c1.x = 4;
             c1.y = 4;
