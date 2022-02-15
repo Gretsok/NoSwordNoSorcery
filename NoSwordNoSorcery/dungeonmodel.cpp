@@ -7,6 +7,7 @@
 #include <string.h>
 #include <vector>
 #include <cstdlib>
+#include "bulletsmanager.h"
 
 bool loadRoomsFromFile(std::vector<std::vector<ObstacleModel>> & out_obstacles)
 {
@@ -194,7 +195,7 @@ void DungeonModel::ClearRoomColliders(){
     this->m_obstacles_colliders.clear();
 }
 
-void DungeonModel::HandleCollision(Collision)
+void DungeonModel::HandleCollision(Collision, bool a_startedCollision)
 {
 
 }
@@ -203,6 +204,7 @@ void DungeonModel::MoveRoom(short i){
     this->generate_door_colliders();
     this->generate_obstacles_colliders();
     this->dungeonController->MoveRoom(i);
+    BulletsManager::DestroyAllBullets();
 }
 
 void DungeonModel::HandleTopDoorCollision(Collision a_collision)

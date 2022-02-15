@@ -24,6 +24,7 @@ GameManager::~GameManager()
 
 
 double GameManager::s_deltaTime = 0.0f;
+bool GameManager::s_isView3D = true;
 
 void GameManager::Update()
 {
@@ -81,8 +82,14 @@ double GameManager::GetDeltaTime()
     return GameManager::s_deltaTime;
 }
 
+bool GameManager::IsView3D()
+{
+    return GameManager::s_isView3D;
+}
 void GameManager::switch_view()
 {
+    GameManager::s_isView3D = !GameManager::s_isView3D;
     this->m_characterController->OnViewSwitched();
     this->m_dungeonController->OnViewSwitched();
+    BulletsManager::OnSwitchView();
 }

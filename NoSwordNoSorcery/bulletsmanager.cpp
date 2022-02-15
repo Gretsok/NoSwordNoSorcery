@@ -46,3 +46,24 @@ void BulletsManager::DestroyBullet(BulletController* a_bulletToDestroy)
         }
     }
 }
+
+void BulletsManager::DestroyAllBullets()
+{
+    std::list<BulletController*>::iterator vIt;
+    std::list<BulletController*> bullets = BulletsManager::s_bullets;
+    for(vIt = bullets.begin(); vIt != bullets.end(); ++vIt)
+    {
+        BulletsManager::s_bullets.remove(*(vIt));
+        delete *(vIt);
+    }
+}
+
+void BulletsManager::OnSwitchView()
+{
+    std::list<BulletController*>::iterator vIt;
+    std::list<BulletController*> bullets = BulletsManager::s_bullets;
+    for(vIt = bullets.begin(); vIt != bullets.end(); ++vIt)
+    {
+        (*vIt)->OnViewSwitched();
+    }
+}

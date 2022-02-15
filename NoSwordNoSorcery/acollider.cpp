@@ -72,7 +72,11 @@ ACollider::ACollider(QVector3D a_center)
 
 ACollider::~ACollider()
 {
-
+    std::list<ACollisionObserver*>::iterator it;
+    for(it = m_collisionObservers.end(); it != m_collisionObservers.begin(); )
+    {
+        it = m_collisionObservers.erase(it);
+    }
 }
 
 void ACollider::OnMove(QVector3D a_deltaToNewOrigin)
@@ -134,10 +138,11 @@ void ACollider::check_collisions()
             {
                 Collision collision = ((ACollider*)((*it)->Model))->IsCollidingWithMe((*vIt).GetOrigin(),
                                                                                    ACollider::GetVectorFromTwoPoints((*vIt).GetOrigin(), (*vIt).GetDestination()));
+                collision.IsCollidingColliderTrigger = this->m_isTrigger;
 
                 if(collision.HasCollision)
                 {
-                    this->notify_collision(collision);
+                    this->notify_collision(collision, true);
                     ((ACollider*)((*it)->Model))->notify_collision(collision);
                     return;
                 }
@@ -156,11 +161,11 @@ std::list<ACollisionObserver*>& ACollider::GetCollisionObservers()
     return m_collisionObservers;
 }
 
-void ACollider::notify_collision(Collision a_collision)
+void ACollider::notify_collision(Collision a_collision, bool a_startedCollision)
 {
     //qDebug() << "oui" << this->m_collisionObservers.size();
     //std::list<ACollisionObserver*>::iterator it;
-    (*this->m_collisionObservers.begin())->HandleCollision(a_collision);
+    (*this->m_collisionObservers.begin())->HandleCollision(a_collision, a_startedCollision);
     //for(it = m_collisionObservers.begin(); it != this->m_collisionObservers.end(); ++it)
     //{
     //    (*it)->HandleCollision(a_collision);

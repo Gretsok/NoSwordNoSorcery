@@ -8,8 +8,9 @@ AController::AController()
 
 AController::~AController()
 {
-    qDebug() << "On vient ici ?";
-    //delete this->Model;
+    qDebug() << "Deleting Model";
+    delete this->Model;
+    qDebug() << "Deleting View";
     delete this->View;
 }
 

@@ -29,7 +29,7 @@ public:
     void MoveBottomRoom(void);
     void ClearRoomColliders(void);
     void MoveRoom(short);
-    virtual void HandleCollision(Collision);
+    virtual void HandleCollision(Collision, bool a_startedCollision);
     void HandleTopDoorCollision(Collision);
     void HandleBottomDoorCollision(Collision);
     void HandleLeftDoorCollision(Collision);
@@ -61,8 +61,9 @@ public:
     }
     virtual ~TopDoorCollisionObserver(){}
     DungeonModel* dungeon;
-    virtual void HandleCollision(Collision collision){
-        dungeon->HandleTopDoorCollision(collision);
+    virtual void HandleCollision(Collision collision, bool a_startedCollision){
+        if(!collision.IsCollidingColliderTrigger)
+            dungeon->HandleTopDoorCollision(collision);
     };
 };
 
@@ -75,8 +76,9 @@ public:
     }
     virtual ~BottomDoorCollisionObserver(){}
     DungeonModel* dungeon;
-    virtual void HandleCollision(Collision collision){
-        dungeon->HandleBottomDoorCollision(collision);
+    virtual void HandleCollision(Collision collision, bool a_startCollision){
+        if(!collision.IsCollidingColliderTrigger)
+            dungeon->HandleBottomDoorCollision(collision);
     };
 };
 
@@ -89,8 +91,9 @@ public:
     }
     virtual ~LeftDoorCollisionObserver(){}
     DungeonModel* dungeon;
-    virtual void HandleCollision(Collision collision){
-        dungeon->HandleLeftDoorCollision(collision);
+    virtual void HandleCollision(Collision collision, bool a_startedCollision){
+        if(!collision.IsCollidingColliderTrigger)
+            dungeon->HandleLeftDoorCollision(collision);
     };
 };
 
@@ -103,8 +106,9 @@ public:
     }
     virtual ~RightDoorCollisionObserver(){}
     DungeonModel* dungeon;
-    virtual void HandleCollision(Collision collision){
-        dungeon->HandleRightDoorCollision(collision);
+    virtual void HandleCollision(Collision collision, bool a_startedCollision){
+        if(!collision.IsCollidingColliderTrigger)
+            dungeon->HandleRightDoorCollision(collision);
     };
 };
 

@@ -36,7 +36,7 @@ Collision Collider2DSquare::IsCollidingWithMe(QVector3D a_intersectorOrigin, QVe
             }*/
             collision = Collision(QVector3D::crossProduct(QVector3D(0,0,1), (*it).GetVector()));
             collision.HasCollision = true;
-            collision.IsTrigger = this->IsTrigger();
+            collision.IsCollidingAgainstColliderTrigger = this->IsTrigger();
             return collision;
         }
     }
