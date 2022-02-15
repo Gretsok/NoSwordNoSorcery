@@ -1,11 +1,11 @@
 #ifndef ACHARACTERVIEW_H
 #define ACHARACTERVIEW_H
 
-#include "acombatmanagerview.h"
 #include "QVector2D"
 #include "QVector3D"
+#include "aview.h"
 
-class ACharacterView : public ACombatManagerView
+class ACharacterView : public AView
 {
 public:
     ACharacterView();
