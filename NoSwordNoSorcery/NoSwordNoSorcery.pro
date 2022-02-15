@@ -18,19 +18,13 @@ SOURCES += \
     dungeoncontroller.cpp \
     collision.cpp \
     dungeongenerator.cpp \
-    abadblobview.cpp \
     abulletview.cpp \
     acharacterview.cpp \
     acollider.cpp \
-    acombatmanagerview.cpp \
     acontroller.cpp \
     amodel.cpp \
     aphysicalobjectmodel.cpp \
     aview.cpp \
-    badblobcontroller.cpp \
-    badblobmodel.cpp \
-    badblobview2d.cpp \
-    badblobview3d.cpp \
     bulletcontroller.cpp \
     bulletmodel.cpp \
     bulletview2d.cpp \
@@ -68,19 +62,13 @@ HEADERS += \
     gldisplaywidget.h \
     line.h \
     mainwindow.h \
-    abadblobview.h \
     abulletview.h \
     acharacterview.h \
     acollider.h \
-    acombatmanagerview.h \
     acontroller.h \
     amodel.h \
     aphysicalobjectmodel.h \
     aview.h \
-    badblobcontroller.h \
-    badblobmodel.h \
-    badblobview2d.h \
-    badblobview3d.h \
     bulletcontroller.h \
     bulletmodel.h \
     bulletview2d.h \
