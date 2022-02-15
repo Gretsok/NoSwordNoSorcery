@@ -12,6 +12,7 @@ public:
     static void CreateNewBullet(QVector3D a_position, QVector3D a_direction, float a_force);
     static void DestroyBullet(BulletController* a_bulletToDestroy);
     static void DestroyAllBullets();
+    static void OnSwitchView();
 private:
     static std::list<BulletController*> s_bullets;
 };

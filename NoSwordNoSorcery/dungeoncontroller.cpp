@@ -2,6 +2,7 @@
 #include "iostream"
 #include <QDebug>
 #include "dungeonmodel.h"
+#include "gamemanager.h"
 
 
 DungeonController::DungeonController(){
@@ -12,8 +13,12 @@ DungeonController::DungeonController(){
 
 DungeonController::DungeonController(CharacterController* character_controller)
 {
-    this->View = new DungeonView3D();
-    this->Viewis3D = true;
+    if(GameManager::IsView3D()){
+        this->View = new DungeonView3D();
+    }
+    else{
+        this->View = new DungeonView2D();
+    }
     this->Model = new DungeonModel(this);
     this->m_characterController = character_controller;
 }
@@ -25,15 +30,13 @@ DungeonController::~DungeonController(){
 
 void DungeonController::OnViewSwitched(){
     //PENSER A DESTROY LES OBJETS
-    if(this->Viewis3D){
+    if(GameManager::IsView3D()){
         delete this->View;
-        this->View = new DungeonView2D();
-        this->Viewis3D = false;
+        this->View = new DungeonView3D();
     }
     else{
         delete this->View;
-        this->View = new DungeonView3D();
-        this->Viewis3D = true;
+        this->View = new DungeonView2D();
     }
 }
 
@@ -56,7 +59,7 @@ void DungeonController::Render(void){
         }
     //}
     AController::Render();
-    if(Viewis3D){
+    if(GameManager::IsView3D()){
         if(((DungeonModel *)this->Model)->RightDoor()){
             ((ADungeonView *)this->View)->DrawRightDoor();
         }

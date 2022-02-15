@@ -12,10 +12,12 @@ public:
     ~GameManager();
     void Update();
     static double GetDeltaTime();
+    static bool IsView3D();
 
 private:
     bool m_displayColliders;
     static double s_deltaTime;
+    static bool s_isView3D;
     double m_timeOfLastFrame;
     double m_timeSinceLastViewSwitch;
     double m_viewSwitchCooldown;
@@ -25,6 +27,8 @@ private:
     void update_game_states();
     void render();
     void switch_view();
+
+
 };
 
 #endif // GAMEMANAGER_H

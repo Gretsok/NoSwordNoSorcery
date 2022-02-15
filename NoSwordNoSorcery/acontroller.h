@@ -13,7 +13,6 @@ public:
 
     virtual void UpdateGameStates(void);
     virtual void Render(void);
-    bool Viewis3D;
     virtual void OnViewSwitched() = 0;
 };
 

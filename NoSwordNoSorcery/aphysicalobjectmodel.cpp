@@ -89,7 +89,6 @@ void APhysicalObjectModel::HandleCollision(Collision a_collision, bool a_started
             theta = -theta;
         }
 
-        qDebug() << theta;
         QQuaternion q = QQuaternion::fromEulerAngles(0.f, 0.f, 2 * theta);
         QVector3D newDirection = q.rotatedVector(-(this->GetDirection()));
         this->m_currentMovement = newDirection;

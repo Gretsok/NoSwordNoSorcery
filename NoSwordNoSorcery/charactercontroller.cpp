@@ -4,8 +4,15 @@
 #include<QDebug>
 
 CharacterController::CharacterController(){
-    this->View = new CharacterView3D();
-    this->Viewis3D = true;
+    if(GameManager::IsView3D())
+    {
+        this->View = new CharacterView3D();
+    }
+    else
+    {
+        this->View = new CharacterView2D();
+    }
+
     this->Model = new CharacterModel();
     this->m_timeSinceLastShot = 0.f;
     this->m_shootingCooldown = 0.5f;
@@ -18,15 +25,13 @@ CharacterController::~CharacterController(){
 
 void CharacterController::OnViewSwitched()
 {    //PENSER A DESTROY LES OBJETS
-    if(this->Viewis3D){
+    if(GameManager::IsView3D()){
         delete this->View;
-        this->View = new CharacterView2D();
-        this->Viewis3D = false;
+        this->View = new CharacterView3D();
     }
     else{
         delete this->View;
-        this->View = new CharacterView3D();
-        this->Viewis3D = true;
+        this->View = new CharacterView2D();
     }
 }
 
