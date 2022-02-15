@@ -34,13 +34,24 @@ void APhysicalObjectModel::SetAcceleration(QVector3D a_acceleration)
 {
     m_currentMovement = a_acceleration.normalized();
     m_speed = a_acceleration.length();
-    m_currentMovement.normalize();
 }
 
 void APhysicalObjectModel::UpdateGameStates(void)
 {
+    if(GetPositions().z() != 0)
+    {
+        QVector3D pos = GetPositions();
+
+        pos.setZ(0.f);
+
+        SetPositions(pos);
+    }
     ((ACollider*) this->m_2DCollider->Model)->OnMove(m_currentMovement * this->m_speed * GameManager::GetDeltaTime());
     this->m_speed -= this->m_deceleration * GameManager::GetDeltaTime();
+    if(this->m_speed < 0.f)
+    {
+        m_speed = 0.f;
+    }
 
 }
 
@@ -56,18 +67,22 @@ void APhysicalObjectModel::SetPositions(QVector3D vector)
 
 QVector3D APhysicalObjectModel::GetDirection()
 {
+    if(m_currentMovement.length() == 0.f)
+    {
+        return QVector3D(0, 1.f, 0);
+    }
     return this->m_currentMovement.normalized();
 }
 
-void APhysicalObjectModel::HandleCollision(Collision a_collision)
+void APhysicalObjectModel::HandleCollision(Collision a_collision, bool a_startedCollision)
 {
-    if(!a_collision.IsTrigger)
+    if(!a_collision.IsCollidingAgainstColliderTrigger)
     {
-        float theta = acos(QVector3D::dotProduct(-(this->m_currentMovement), a_collision.GetNormal()) /
-                           (this->m_currentMovement.length() * a_collision.GetNormal().length()));
+
+        float theta = acos(QVector3D::dotProduct(-(this->GetDirection()), a_collision.GetNormal().normalized()));
         theta = (theta * 180.f) / 3.1415926f;
 
-        QVector3D normalToSign = QVector3D::crossProduct(-(this->m_currentMovement), a_collision.GetNormal());
+        QVector3D normalToSign = QVector3D::crossProduct(-(this->GetDirection()), a_collision.GetNormal());
 
         if(normalToSign.z() < 0)
         {
@@ -76,7 +91,7 @@ void APhysicalObjectModel::HandleCollision(Collision a_collision)
 
         qDebug() << theta;
         QQuaternion q = QQuaternion::fromEulerAngles(0.f, 0.f, 2 * theta);
-        QVector3D newDirection = q.rotatedVector(-(this->m_currentMovement));
+        QVector3D newDirection = q.rotatedVector(-(this->GetDirection()));
         this->m_currentMovement = newDirection;
         if(this->m_speed < 1.f)
         {

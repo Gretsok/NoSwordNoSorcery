@@ -7,7 +7,7 @@ class ACollisionObserver
 public:
     ACollisionObserver();
     virtual ~ACollisionObserver();
-    virtual void HandleCollision(Collision) = 0;
+    virtual void HandleCollision(Collision, bool a_startedCollision) = 0;
 };
 
 #endif // ACOLLISIONOBSERVER_H

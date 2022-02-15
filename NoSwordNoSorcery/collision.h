@@ -11,7 +11,8 @@ public:
     virtual ~Collision();
     QVector3D GetNormal();
     bool HasCollision = false;
-    bool IsTrigger = false;
+    bool IsCollidingAgainstColliderTrigger = false;
+    bool IsCollidingColliderTrigger = false;
 private:
     QVector3D m_normal;
 };

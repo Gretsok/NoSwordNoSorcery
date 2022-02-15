@@ -1,6 +1,7 @@
 #include "dungeonmodel.h"
 #include "collider2dsquare.h"
 #include "QDebug"
+#include "bulletsmanager.h"
 
 DungeonModel::DungeonModel()
 {
@@ -128,7 +129,7 @@ void DungeonModel::ClearRoomColliders(){
     }
 }
 
-void DungeonModel::HandleCollision(Collision)
+void DungeonModel::HandleCollision(Collision, bool a_startedCollision)
 {
 
 }
@@ -136,10 +137,11 @@ void DungeonModel::HandleCollision(Collision)
 void DungeonModel::MoveRoom(short i){
     this->generate_door_colliders();
     this->dungeonController->MoveRoom(i);
+    BulletsManager::DestroyAllBullets();
 }
 
 void DungeonModel::HandleTopDoorCollision(Collision a_collision)
-{
+{    
     this->MoveTopRoom();
 }
 

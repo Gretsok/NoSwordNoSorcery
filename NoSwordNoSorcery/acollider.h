@@ -24,6 +24,7 @@ public:
     void AddCollisionObserver(ACollisionObserver* a_collisionObserver);
     void RemoveCollisionObserver(ACollisionObserver* a_collisionObserver);
     bool IsTrigger();
+
 private:
     void check_collisions();
 
@@ -32,7 +33,7 @@ protected:
     virtual std::list<OrientedLine> get_intersectors();
     std::list<ACollisionObserver*> m_collisionObservers;
     std::list<ACollisionObserver*>& GetCollisionObservers();
-    void notify_collision(Collision a_collision);
+    void notify_collision(Collision a_collision, bool a_startedCollision = false);
     bool m_isTrigger = false;
 
 };

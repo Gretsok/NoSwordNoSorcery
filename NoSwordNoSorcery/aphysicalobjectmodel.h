@@ -14,7 +14,7 @@ public:
     void SetAcceleration(QVector3D a_acceleration);
     virtual QVector3D GetPositions();
     QVector3D GetDirection();
-    virtual void HandleCollision(Collision);
+    virtual void HandleCollision(Collision, bool a_startedCollision);
     void SetPositions(QVector3D);
 protected:
     ColliderController* m_2DCollider;

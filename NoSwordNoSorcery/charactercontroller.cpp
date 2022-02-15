@@ -43,7 +43,7 @@ void CharacterController::UpdateGameStates(void)
             qDebug() << "SHOOT";
             BulletsManager::CreateNewBullet(((CharacterModel*) this->Model)->GetPositions() + ((CharacterModel*) this->Model)->GetDirection() * 0.5f,
                                             ((CharacterModel*) this->Model)->GetDirection(),
-                                            15.f);
+                                            10.f);
 
             this->m_timeSinceLastShot = 0.f;
         }

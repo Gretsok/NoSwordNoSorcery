@@ -13,10 +13,7 @@ BulletController::BulletController()
 
 BulletController::~BulletController()
 {
-    /*qDebug() << "Deleting Bullet Controller";
-    delete this->Model;
-    qDebug() << "Giga prout";
-    delete this->View;*/
+
 }
 
 void BulletController::OnViewSwitched()
