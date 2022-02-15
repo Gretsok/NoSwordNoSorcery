@@ -1,6 +1,45 @@
 #include "dungeonmodel.h"
 #include "collider2dsquare.h"
 #include "QDebug"
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <string.h>
+#include <vector>
+#include <cstdlib>
+
+bool loadRoomsFromFile(std::vector<std::vector<ObstacleModel>> & out_obstacles)
+{
+    std::vector<ObstacleModel> temp_obstacles;
+    //std::vector<std::vector<ObstacleModel>> temp_rooms_obstacles;
+    FILE * file = fopen("../rooms.txt", "r");
+    if( file == NULL ){
+        printf("Impossible to open the file !\n");
+        return false;
+    }
+    while( 1 ){
+
+        char lineHeader[128];
+        // read the first word of the line
+        int res = fscanf(file, "%s", lineHeader);
+        if (res == EOF)
+            break; // EOF = End Of File. Quit the loop.
+
+        // else : parse lineHeader
+        if(strcmp(lineHeader, "r") == 0){
+            ObstacleModel object;
+            temp_obstacles.clear();
+            float x,y;
+            while(fscanf(file,"%f/%f",&x,&y)==2){
+                temp_obstacles.push_back(ObstacleModel(x,y));
+            }
+             out_obstacles.push_back(temp_obstacles);
+        }
+
+    }
+    fclose(file);
+    return true;
+}
 
 DungeonModel::DungeonModel()
 {
@@ -13,6 +52,18 @@ DungeonModel::DungeonModel()
     ((ACollider*)this->m_wallsCollider->Model)->AddCollisionObserver(this);
 }
 
+void DungeonModel::generate_obstacles_colliders(){
+    std::vector<ObstacleModel> obstacles = this->GetObstaclesInRoom();
+    float x;
+    float y;
+    for(unsigned long long i =0;i<obstacles.size();i++){
+        x = obstacles[i].xPosition;
+        y = obstacles[i].yPosition;
+        this->m_obstacles_colliders.push_back(new ColliderController(new Collider2DSquare(QVector3D(x,y,0), QVector3D(0.5,0.5,0))));
+        ((ACollider*)this->m_obstacles_colliders[i]->Model)->AddCollisionObserver(this);
+    }
+}
+
 DungeonModel::DungeonModel(DungeonController* controller)
 {
     this->dungeonController = controller;
@@ -23,6 +74,12 @@ DungeonModel::DungeonModel(DungeonController* controller)
     this->m_wallsCollider = new ColliderController(new Collider2DSquare(QVector3D(0,0,0), QVector3D(4,4,0)));
     this->generate_door_colliders();
     ((ACollider*)this->m_wallsCollider->Model)->AddCollisionObserver(this);
+
+    bool res = loadRoomsFromFile(this->rooms_with_obstacles);
+    if(res){
+        this->generate_obstacles_colliders();
+    }
+
 }
 
 DungeonModel::~DungeonModel()
@@ -37,10 +94,10 @@ DungeonModel::~DungeonModel()
     if(this->RightDoor())
         ((ACollider*)this->m_rightDoorCollider->Model)->RemoveCollisionObserver(m_rightDoorCollisionObserver);
     delete this->m_wallsCollider;
-    delete this->m_topDoorCollider;
+    /*delete this->m_topDoorCollider;
     delete this->m_bottomDoorCollider;
     delete this->m_leftDoorCollider;
-    delete this->m_rightDoorCollider;
+    delete this->m_rightDoorCollider;*/
 }
 
 void DungeonModel::generate_door_colliders()
@@ -87,10 +144,10 @@ bool DungeonModel::RightDoor(){
     }
     else return false;
 }
-
 bool DungeonModel::IsFinalRoom(){
-    return dungeonGenerator.dungeonLayout[this->xRoomIndex][this->yRoomIndex+1]==2;
+    return dungeonGenerator.dungeonLayout[this->xRoomIndex][this->yRoomIndex]==2;
 }
+
 
 void DungeonModel::MoveRightRoom(){
     this->ClearRoomColliders();
@@ -130,6 +187,11 @@ void DungeonModel::ClearRoomColliders(){
         ((ACollider*)this->m_rightDoorCollider->Model)->RemoveCollisionObserver(m_rightDoorCollisionObserver);
         delete this->m_rightDoorCollider;
     }
+    for(unsigned long long i =0;i<this->m_obstacles_colliders.size();i++){
+        ((ACollider*)this->m_obstacles_colliders[i]->Model)->RemoveCollisionObserver(this);
+        delete this->m_obstacles_colliders[i];
+    }
+    this->m_obstacles_colliders.clear();
 }
 
 void DungeonModel::HandleCollision(Collision)
@@ -139,6 +201,7 @@ void DungeonModel::HandleCollision(Collision)
 
 void DungeonModel::MoveRoom(short i){
     this->generate_door_colliders();
+    this->generate_obstacles_colliders();
     this->dungeonController->MoveRoom(i);
 }
 
@@ -162,22 +225,9 @@ void DungeonModel::HandleRightDoorCollision(Collision a_collision)
     this->MoveRightRoom();
 }
 
-TopDoorCollisionObserver::~TopDoorCollisionObserver()
+
+std::vector<ObstacleModel> DungeonModel::GetObstaclesInRoom()
 {
-
-}
-
-BottomDoorCollisionObserver::~BottomDoorCollisionObserver()
-{
-
-}
-
-LeftDoorCollisionObserver::~LeftDoorCollisionObserver()
-{
-
-}
-
-RightDoorCollisionObserver::~RightDoorCollisionObserver()
-{
-
+    int index = this->yRoomIndex*5 + this->xRoomIndex;
+    return this->rooms_with_obstacles[index];
 }

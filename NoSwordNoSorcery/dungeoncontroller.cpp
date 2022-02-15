@@ -38,6 +38,9 @@ void DungeonController::OnViewSwitched(){
 }
 
 void DungeonController::Render(void){
+    //Render obstacles
+    ((ADungeonView *)this->View)->DrawObstacles(((DungeonModel *)this->Model)->GetObstaclesInRoom());
+
     if(((DungeonModel *)this->Model)->IsFinalRoom()){
         ((ADungeonView *)this->View)->DrawTreasure();
     }
@@ -47,23 +50,21 @@ void DungeonController::Render(void){
     if(((DungeonModel *)this->Model)->LeftDoor()){
         ((ADungeonView *)this->View)->DrawLeftDoor();
     }
-    //if(!Viewis3D){
-        if(((DungeonModel *)this->Model)->RightDoor()){
-            ((ADungeonView *)this->View)->DrawRightDoor();
-        }
-        if(((DungeonModel *)this->Model)->BottomDoor()){
-            ((ADungeonView *)this->View)->DrawBottomDoor();
-        }
-    //}
-    AController::Render();
-    if(Viewis3D){
-        if(((DungeonModel *)this->Model)->RightDoor()){
-            ((ADungeonView *)this->View)->DrawRightDoor();
-        }
-        if(((DungeonModel *)this->Model)->BottomDoor()){
-            ((ADungeonView *)this->View)->DrawBottomDoor();
-        }
+    if(((DungeonModel *)this->Model)->RightDoor()){
+        ((ADungeonView *)this->View)->DrawRightDoor();
     }
+    if(((DungeonModel *)this->Model)->BottomDoor()){
+        ((ADungeonView *)this->View)->DrawBottomDoor();
+    }
+    AController::Render();
+    /*if(Viewis3D){
+        if(((DungeonModel *)this->Model)->RightDoor()){
+            ((ADungeonView *)this->View)->DrawRightDoor();
+        }
+        if(((DungeonModel *)this->Model)->BottomDoor()){
+            ((ADungeonView *)this->View)->DrawBottomDoor();
+        }
+    }*/
 }
 
 void DungeonController::MoveRoom(short i)

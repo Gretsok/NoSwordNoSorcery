@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Rooms>
+  <Room>
+    <Obstacle type="cube" x="0" y="0"/>
+    <Obstacle type="cube" x="2" y="-2"/>
+    <Obstacle type="cube" x="-2" y="2"/>
+  </Room>
+  <Room>
+    <Obstacle type="cube" x="0" y="0"/>
+  </Room>
+</Rooms

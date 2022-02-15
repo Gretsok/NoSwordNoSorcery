@@ -9,7 +9,7 @@ AController::AController()
 AController::~AController()
 {
     qDebug() << "On vient ici ?";
-    delete this->Model;
+    //delete this->Model;
     delete this->View;
 }
 

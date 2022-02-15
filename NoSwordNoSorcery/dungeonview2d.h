@@ -19,6 +19,7 @@ public:
     QVector3D GetTopDoorEntrancePosition();
     QVector3D GetRightDoorEntrancePosition();
     QVector3D GetLeftDoorEntrancePosition();
+    void DrawObstacles(std::vector<ObstacleModel>);
 };
 
 #endif // DUNGEONVIEW2D_H

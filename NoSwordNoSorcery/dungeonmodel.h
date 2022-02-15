@@ -6,8 +6,7 @@
 #include "dungeongenerator.h"
 #include "acollisionobserver.h"
 #include "dungeoncontroller.h"
-
-
+#include "obstaclemodel.h"
 
 class DungeonModel : public AModel, ACollisionObserver
 {
@@ -35,6 +34,7 @@ public:
     void HandleBottomDoorCollision(Collision);
     void HandleLeftDoorCollision(Collision);
     void HandleRightDoorCollision(Collision);
+    std::vector<ObstacleModel> GetObstaclesInRoom(void);
 protected:
     ColliderController* m_wallsCollider;
     ColliderController* m_topDoorCollider;
@@ -45,8 +45,11 @@ protected:
     ACollisionObserver* m_bottomDoorCollisionObserver;
     ACollisionObserver* m_leftDoorCollisionObserver;
     ACollisionObserver* m_rightDoorCollisionObserver;
+    std::vector<ColliderController*> m_obstacles_colliders;
 private:
     void generate_door_colliders();
+    void generate_obstacles_colliders();
+    std::vector<std::vector<ObstacleModel>> rooms_with_obstacles;
 };
 
 class TopDoorCollisionObserver : public ACollisionObserver
@@ -56,7 +59,7 @@ public:
     TopDoorCollisionObserver(DungeonModel *dungeon){
         this->dungeon = dungeon;
     }
-    virtual ~TopDoorCollisionObserver();
+    virtual ~TopDoorCollisionObserver(){}
     DungeonModel* dungeon;
     virtual void HandleCollision(Collision collision){
         dungeon->HandleTopDoorCollision(collision);
@@ -70,7 +73,7 @@ public:
     BottomDoorCollisionObserver(DungeonModel *dungeon){
         this->dungeon = dungeon;
     }
-    virtual ~BottomDoorCollisionObserver();
+    virtual ~BottomDoorCollisionObserver(){}
     DungeonModel* dungeon;
     virtual void HandleCollision(Collision collision){
         dungeon->HandleBottomDoorCollision(collision);
@@ -84,7 +87,7 @@ public:
     LeftDoorCollisionObserver(DungeonModel *dungeon){
         this->dungeon = dungeon;
     }
-    virtual ~LeftDoorCollisionObserver();
+    virtual ~LeftDoorCollisionObserver(){}
     DungeonModel* dungeon;
     virtual void HandleCollision(Collision collision){
         dungeon->HandleLeftDoorCollision(collision);
@@ -98,11 +101,25 @@ public:
     RightDoorCollisionObserver(DungeonModel *dungeon){
         this->dungeon = dungeon;
     }
-    virtual ~RightDoorCollisionObserver();
+    virtual ~RightDoorCollisionObserver(){}
     DungeonModel* dungeon;
     virtual void HandleCollision(Collision collision){
         dungeon->HandleRightDoorCollision(collision);
     };
 };
+
+/*class ObstacleCollisionObserver : public ACollisionObserver
+{
+public:
+    ObstacleCollisionObserver();
+    ObstacleCollisionObserver(DungeonModel * dungeon){
+        this->dungeon = dungeon;
+    }
+    virtual ~ObstacleCollisionObserver(){}
+    DungeonModel* dungeon;
+    virtual void HandleCollision(Collision collision){
+        dungeon->HandleObstacleCollision()
+    }
+};*/
 
 #endif // DUNGEONMODEL_H

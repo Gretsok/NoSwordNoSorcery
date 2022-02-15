@@ -49,6 +49,7 @@ SOURCES += \
     line.cpp \
     main.cpp \
     mainwindow.cpp \
+    obstaclemodel.cpp \
     utils.cpp
 
 HEADERS += \
@@ -90,6 +91,7 @@ HEADERS += \
     characterview3d.h \
     collider2dcircle.h \
     collider2dsquare.h \
+    obstaclemodel.h \
     utils.h
 
 FORMS += \

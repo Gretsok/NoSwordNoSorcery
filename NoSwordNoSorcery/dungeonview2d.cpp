@@ -144,3 +144,19 @@ void DungeonView2D::Render(void){
     glEnd();
 
 }
+
+void DungeonView2D::DrawObstacles(std::vector<ObstacleModel> obstacles){
+    float x;
+    float y;
+    for(unsigned long long i = 0;i<obstacles.size();i++){
+        x = obstacles[i].xPosition;
+        y = obstacles[i].yPosition;
+        glBegin(GL_QUADS);
+            glColor3f(0.f,1.f,0.f);
+            glVertex3f(x-0.25,y-0.25,0);
+            glVertex3f(x-0.25,y+0.25,0);
+            glVertex3f(x+0.25,y+0.25,0);
+            glVertex3f(x+0.25,y-0.25,0);
+        glEnd();
+    }
+}
