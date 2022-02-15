@@ -23,6 +23,7 @@ public:
     bool BottomDoor(void);
     bool LeftDoor(void);
     bool RightDoor(void);
+    bool IsFinalRoom(void);
     void MoveRightRoom(void);
     void MoveLeftRoom(void);
     void MoveTopRoom(void);

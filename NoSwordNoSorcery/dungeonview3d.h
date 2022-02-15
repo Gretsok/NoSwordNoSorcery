@@ -14,6 +14,7 @@ public:
     virtual void DrawBottomDoor();
     virtual void DrawLeftDoor();
     virtual void DrawRightDoor();
+    void DrawTreasure();
     QVector3D GetBottomDoorEntrancePosition();
     QVector3D GetTopDoorEntrancePosition();
     QVector3D GetLeftDoorEntrancePosition();

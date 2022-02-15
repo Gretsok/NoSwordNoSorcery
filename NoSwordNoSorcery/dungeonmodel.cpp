@@ -89,6 +89,10 @@ bool DungeonModel::RightDoor(){
     else return false;
 }
 
+bool DungeonModel::IsFinalRoom(){
+    return dungeonGenerator.dungeonLayout[this->xRoomIndex][this->yRoomIndex+1]==2;
+}
+
 void DungeonModel::MoveRightRoom(){
     this->ClearRoomColliders();
     this->yRoomIndex = this->yRoomIndex+1;
