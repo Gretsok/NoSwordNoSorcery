@@ -2,6 +2,9 @@
 #include "gamemanager.h"
 #include "bulletsmanager.h"
 #include<QDebug>
+#include <thread>
+
+std::thread first;
 
 CharacterController::CharacterController(){
     if(GameManager::IsView3D())
@@ -20,18 +23,20 @@ CharacterController::CharacterController(){
 }
 
 CharacterController::~CharacterController(){
-
+    first.join();
 }
 
 void CharacterController::OnViewSwitched()
 {    //PENSER A DESTROY LES OBJETS
     if(GameManager::IsView3D()){
+        first.detach();
         delete this->View;
         this->View = new CharacterView3D();
     }
     else{
         delete this->View;
         this->View = new CharacterView2D();
+        first = std::thread(&CharacterView2D::ChangeColor,(CharacterView2D*)this->View);
     }
 }
 

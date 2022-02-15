@@ -10,6 +10,10 @@ public:
     CharacterView2D();
     virtual ~CharacterView2D();
     virtual void Render(void);
+    float m_redValue;
+    float m_greenValue;
+    float m_blueValue;
+    void ChangeColor();
 };
 
 #endif // CHARACTERVIEW2D_H
