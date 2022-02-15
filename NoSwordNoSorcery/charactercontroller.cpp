@@ -23,7 +23,7 @@ CharacterController::CharacterController(){
 }
 
 CharacterController::~CharacterController(){
-    first.join();
+    first.detach();
 }
 
 void CharacterController::OnViewSwitched()
