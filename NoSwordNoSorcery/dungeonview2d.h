@@ -13,6 +13,7 @@ public:
     void DrawBottomDoor();
     void DrawLeftDoor();
     void DrawRightDoor();
+    void DrawTreasure();
 };
 
 #endif // DUNGEONVIEW2D_H

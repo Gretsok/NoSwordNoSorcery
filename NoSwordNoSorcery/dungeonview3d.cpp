@@ -335,3 +335,18 @@ void DungeonView3D::DrawRightDoor(){
     glEnd();
 }
 
+void DungeonView3D::DrawTreasure(){
+    QVector3D point;
+    glBegin(GL_QUADS);
+        glColor3f(1.f,215.f/255.f,0.f);
+        point = Convert2Dto3DPoint(QVector3D(-1,1,0));
+        glVertex3f(point.x(),point.y(),point.z());
+        point = Convert2Dto3DPoint(QVector3D(1,1,0));
+        glVertex3f(point.x(),point.y(),point.z());
+        point = Convert2Dto3DPoint(QVector3D(1,-1,0));
+        glVertex3f(point.x(),point.y(),point.z());
+        point = Convert2Dto3DPoint(QVector3D(-1,-1,0));
+        glVertex3f(point.x(),point.y(),point.z());
+    glEnd();
+}
+

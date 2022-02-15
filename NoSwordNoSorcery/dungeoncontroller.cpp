@@ -38,6 +38,9 @@ void DungeonController::OnViewSwitched(){
 }
 
 void DungeonController::Render(void){
+    if(((DungeonModel *)this->Model)->IsFinalRoom()){
+        ((ADungeonView *)this->View)->DrawTreasure();
+    }
     if(((DungeonModel *)this->Model)->TopDoor()){
         ((ADungeonView *)this->View)->DrawTopDoor();
     }

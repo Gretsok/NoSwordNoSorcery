@@ -46,6 +46,16 @@ void DungeonView2D::DrawBottomDoor(void){
     glEnd();
 }
 
+void DungeonView2D::DrawTreasure(void){
+    glBegin(GL_QUADS);
+        glColor3f(1.f,215.f/255.f,0.f);
+        glVertex3f(-1,1,0);
+        glVertex3f(1,1,0);
+        glVertex3f(1,-1,0);
+        glVertex3f(-1,-1,0);
+    glEnd();
+}
+
 void DungeonView2D::Render(void){
 
     //MURS
