@@ -5,6 +5,7 @@ ACombatManagerView::ACombatManagerView()
 
 }
 
-void ACombatManagerView::Render(){
+ACombatManagerView::~ACombatManagerView()
+{
 
 }

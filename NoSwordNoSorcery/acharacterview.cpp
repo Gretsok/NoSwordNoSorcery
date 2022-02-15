@@ -8,6 +8,11 @@ ACharacterView::ACharacterView()
 
 }
 
+ACharacterView::~ACharacterView()
+{
+
+}
+
 
 QVector2D ACharacterView::GetInputs() const
 {

@@ -5,6 +5,11 @@ CharacterView2D::CharacterView2D()
 
 }
 
+CharacterView2D::~CharacterView2D()
+{
+
+}
+
 void CharacterView2D::Render(void){
     glBegin(GL_QUADS);
         glColor3f(1.f, 0.f,0.f);

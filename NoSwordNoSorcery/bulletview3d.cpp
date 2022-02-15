@@ -4,3 +4,13 @@ BulletView3D::BulletView3D()
 {
 
 }
+
+BulletView3D::~BulletView3D()
+{
+
+}
+
+void BulletView3D::Render(void)
+{
+
+}

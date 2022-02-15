@@ -6,6 +6,7 @@ class ACollisionObserver
 {
 public:
     ACollisionObserver();
+    virtual ~ACollisionObserver();
     virtual void HandleCollision(Collision) = 0;
 };
 

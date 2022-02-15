@@ -6,6 +6,11 @@ DungeonView2D::DungeonView2D()
    //qDebug()<< "constructor DungeonView2D";
 }
 
+DungeonView2D::~DungeonView2D()
+{
+
+}
+
 void DungeonView2D::DrawTopDoor(void){
     glBegin(GL_QUADS);
         glColor3f(0.f,0.f,0.f);

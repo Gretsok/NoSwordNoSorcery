@@ -6,6 +6,11 @@ ADungeonView::ADungeonView() : AView {}
  //qDebug()<< "constructor ADungeonView";
 }
 
+ADungeonView::~ADungeonView()
+{
+
+}
+
 void ADungeonView::Render(){
 
 }

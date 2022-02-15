@@ -15,7 +15,7 @@ public:
     static QVector3D GetVectorFromTwoPoints(QVector3D a_origin, QVector3D a_destionation);
     ACollider();
     ACollider(QVector3D a_center);
-    ~ACollider();
+    virtual ~ACollider();
     void OnMove(QVector3D a_newOrigin);
     virtual Collision IsCollidingWithMe(QVector3D a_intersectorOrigin, QVector3D a_intersectorVector);
     QVector3D GetOrigin();

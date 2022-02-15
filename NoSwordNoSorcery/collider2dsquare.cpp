@@ -12,6 +12,11 @@ Collider2DSquare::Collider2DSquare(QVector3D a_center, QVector3D a_cornerLocalPo
     this->m_isTrigger = a_isTrigger;
 }
 
+Collider2DSquare::~Collider2DSquare()
+{
+
+}
+
 Collision Collider2DSquare::IsCollidingWithMe(QVector3D a_intersectorOrigin, QVector3D a_intersectorVector)
 {
     std::list<OrientedLine> borders = this-> get_borders();

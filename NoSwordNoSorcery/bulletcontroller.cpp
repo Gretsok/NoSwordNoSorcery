@@ -13,8 +13,10 @@ BulletController::BulletController()
 
 BulletController::~BulletController()
 {
+    /*qDebug() << "Deleting Bullet Controller";
     delete this->Model;
-    delete this->View;
+    qDebug() << "Giga prout";
+    delete this->View;*/
 }
 
 void BulletController::OnViewSwitched()
@@ -27,7 +29,9 @@ void BulletController::UpdateGameStates(void)
     ((ABulletView*) this->View)->SetGamePositions(((BulletModel*) this->Model)->GetPositions());
     if(((BulletModel*) this->Model)->IsDead())
     {
+        qDebug() << "AskToDestroyBullet";
         BulletsManager::DestroyBullet(this);
     }
 }
+
 

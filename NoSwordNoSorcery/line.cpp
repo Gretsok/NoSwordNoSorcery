@@ -12,6 +12,11 @@ OrientedLine::OrientedLine(QVector3D a_origin, QVector3D a_destination)
     this->m_destination = a_destination;
 }
 
+OrientedLine::~OrientedLine()
+{
+
+}
+
 QVector3D OrientedLine::GetOrigin()
 {
     return this->m_origin;

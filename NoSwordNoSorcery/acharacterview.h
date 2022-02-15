@@ -9,6 +9,7 @@ class ACharacterView : public ACombatManagerView
 {
 public:
     ACharacterView();
+    virtual ~ACharacterView();
     QVector2D GetInputs() const;
     bool IsShooting() const;
     void SetGamePositions(QVector3D a_gamePositions);

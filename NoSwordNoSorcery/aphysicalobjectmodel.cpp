@@ -33,7 +33,7 @@ void APhysicalObjectModel::ApplyAcceleration(QVector3D a_accelerationToAdd)
 void APhysicalObjectModel::SetAcceleration(QVector3D a_acceleration)
 {
     m_currentMovement = a_acceleration.normalized();
-    m_speed = m_currentMovement.length();
+    m_speed = a_acceleration.length();
     m_currentMovement.normalize();
 }
 

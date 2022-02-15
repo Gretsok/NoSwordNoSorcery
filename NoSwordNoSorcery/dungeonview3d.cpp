@@ -8,6 +8,11 @@ DungeonView3D::DungeonView3D()
 
 }
 
+DungeonView3D::~DungeonView3D()
+{
+
+}
+
 void sommetA(float layer=0){
     QVector3D point = Convert2Dto3DPoint(QVector3D(-4,-4,layer));
     glVertex3f(point.x(),point.y(),point.z());

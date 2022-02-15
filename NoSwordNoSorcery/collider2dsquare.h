@@ -8,6 +8,7 @@ class Collider2DSquare : public ACollider
 public:
     Collider2DSquare();
     Collider2DSquare(QVector3D a_center, QVector3D a_cornerLocalPoint, bool a_isTrigger = false);
+    virtual ~Collider2DSquare();
     Collision IsCollidingWithMe(QVector3D a_intersectorOrigin, QVector3D a_intersectorVector);
 
 protected:
